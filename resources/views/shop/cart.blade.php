@@ -9,13 +9,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <!-- Favicon -->
-        <link rel="shortcut icon" href="/favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
 
         <!-- CSS Implementing Plugins -->
-        <link rel="stylesheet" href="/assets/vendor/font-awesome/css/fontawesome-all.min.css">
+        <link re    l="stylesheet" href="/assets/vendor/font-awesome/css/fontawesome-all.min.css">
         <link rel="stylesheet" href="/assets/css/font-electro.css">
         
         <link rel="stylesheet" href="/assets/vendor/animate.css/animate.min.css">
