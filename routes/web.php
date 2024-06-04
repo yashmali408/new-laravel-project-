@@ -30,7 +30,16 @@ Route::prefix('/shop')->group(function () {
     });
 });
 
+Route::get('/about',function(){
+    return view('about'); //about.blade.php
+});
 Route::get('/faq',function(){
     return view('faq'); //faq.blade.php
+});
+Route::get('/store-directory',function(){
+    return view('store-directory'); //store-directory.blade.php
+});
+Route::get('/terms-and-conditions',function(){
+    return view('terms-and-conditions'); //terms-and-conditions.blade.php
 });
 
