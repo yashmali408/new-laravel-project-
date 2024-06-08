@@ -3,10 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+
 
 class AuthController extends Controller
 {
+    //1. Proeprty
+
+    //2. Constructor
+
+    //3. Method
+
+    public function dashboard(){
+        //I can check if the user is not directly accesing this page
+        if(Auth::check()){
+            //Every function return something
+            return view('admin.dashboard');
+        }else{
+            return redirect('/admin');
+        }
+
+    }
     //We can give any name of the class object
     public function login(Request $request){
         //Serverside validation
@@ -22,14 +40,54 @@ class AuthController extends Controller
         //2. Eleqouent
         //ClassName::method(actualArg1,actualArg2,..)
         $user = User::where('email','=',$request->email)->first();
-        
-        dd($user);
-        dd($request->all());
+        $credentials = $request->only('email','password');
+        //Check if the user object is not empty
+        if($user){
+            if (Auth::attempt($credentials)) {
+                session(['firstname' => $user->name]);//Associative array ['key'=>'value']
+                session(['lastname' => $user->surname]);
+                return redirect('/admin/dashboard');
+            }else{
+                //False
+                //Empty Invalid credentials
+                //dd('Invalid credentials  i.e User doest not exits');
+
+                // return 
+                return back()->with('failed','Invalid credentials');
+            }
+            //Try Auth Attemp
+            //True
+            //Not empty
+            //dd('User exits');
+            //return 
+            // Create some session variables
+            // Store user information in session variables
+            //var_dump($user->name);
+            //var_dump($user->surname);
+            ///dd('');
+            
+
+        }else{
+            // return 
+            return back()->with('failed','Invalid credentials');
+        }
+
+        //dd($user->name);
+        //dd($request->all());
 
         
 
 
-
-        return 'login ';
+        //Every function return something
+        //return 'login ';
     }
+
+    public function logout(Request $request){
+        //Session detroy
+        $request->session()->flush();
+        //Everyt function return something
+        return redirect('/admin');
+    }
+
+
 }

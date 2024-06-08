@@ -16,7 +16,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{ $firstname.' '.$lastname }}</a>
+                <a href="#" class="d-block">{{ session('firstname') }} {{ session('lastname') }}</a>
             </div>
         </div>
 
