@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CustomerAuthController;
 
 /*   Frontend Routes     */
 
@@ -78,4 +79,9 @@ Route::prefix('admin')->group(function () { // /admin/login
         // Matches The "/admin/login" URL
         return view('admin.general'); //general.blade.php
     });
+});
+
+/*   Frontend Routes     */
+Route::prefix('customer')->group(function () { // /admin/login
+    Route::post('/register', [CustomerAuthController::class,'register'])->name('customerRegister');
 });
