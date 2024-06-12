@@ -1,3 +1,21 @@
+@if (Session::has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{Session::get('success')}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+@if (Session::has('failed'))
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{Session::get('failed')}}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+@if ($errors->has('email'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ $errors->first('email') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
 <header id="header" class="u-header u-header-left-aligned-nav">
     <div class="u-header__section">
         <!-- Topbar -->
