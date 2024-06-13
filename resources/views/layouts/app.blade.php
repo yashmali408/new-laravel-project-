@@ -200,9 +200,23 @@
         });
         </script>
         <script>
+            //Everything which i write inside script tag will a JS code
             console.log(document.querySelector('button.a_loginsubmit'));
-            document.querySelector('button.a_loginsubmit').addEventListener('click', function(){
+            document.querySelector('button.a_loginsubmit').addEventListener('click', function(e){
+                e.preventDefault();// e=event //dont reload the page
+                //Becase we want to implent AJAX
+                let email = document.querySelector('input#signinEmail').value
+                console.log('email >>> ',email)
+                let password = document.querySelector('input#signinPassword').value
+                console.log('password >>>',password)
                 console.log('Hello')
+                //Create xhr object of XMLHttpRequest classs
+              //const classObject = new ClassName(); // PascalCase
+                const xhro = new XMLHttpRequest();
+                 //co.method()
+                xhro.open("POST","http://localhost:8000/customer/login");
+                xhro.send();
+
             })
             // Javascript Code
             // AJAX JS Code
@@ -211,11 +225,9 @@
             // let classObject = new ClassName()/
             // const classObject = new ClassName()/
             // xhro = xml http request object
-            var xhro = new XMLHttpRequest();
+            
 
-            //co.method()
-            //xhro.open("POST","http://localhost:8000/customer/login");
-            //xhro.send();
+           
 
 
 

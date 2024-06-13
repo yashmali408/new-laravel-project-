@@ -84,5 +84,5 @@ Route::prefix('admin')->group(function () { // /admin/login
 /*   Frontend Routes     */
 Route::prefix('customer')->group(function () { // /admin/login
     Route::post('/register', [CustomerAuthController::class,'register'])->name('customerRegister');
-    Route::get('/login', [CustomerAuthController::class,'login'])->name('customerLogin');
+    Route::post('/login', [CustomerAuthController::class,'login'])->name('customerLogin');
 });
