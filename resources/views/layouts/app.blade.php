@@ -204,6 +204,8 @@
             console.log(document.querySelector('button.a_loginsubmit'));
             document.querySelector('button.a_loginsubmit').addEventListener('click', function(e){
                 e.preventDefault();// e=event //dont reload the page
+
+                document.querySelector('i.ec.ec-close-remove').click()
                 //Becase we want to implent AJAX
                 let email = document.querySelector('input#signinEmail').value
                 console.log('email >>> ',email)
@@ -214,8 +216,34 @@
               //const classObject = new ClassName(); // PascalCase
                 const xhro = new XMLHttpRequest();
                  //co.method()
-                xhro.open("POST","http://localhost:8000/customer/login");
-                xhro.send();
+                //object.method()
+                xhro.open("POST","http://localhost:8000/customer/login",true);// True = Asyncronous Request
+                //object.method()
+                xhro.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                // [] JS Array
+                // JS Object -> JSON String
+                var data = JSON.stringify({ // {key:value,key:value} = JS object
+                    'email':email,
+                    'password':password,
+                });
+              //object.method()
+                xhro.send(data);
+
+                xhro.onreadystatechange = function(){
+                    if(xhro.readyState === 4 && xhro.status === 200){
+                                  //object.property
+                        console.log('xhro>>>>',xhro);
+
+                        console.log(xhro.responseText);
+                                // JSON string -> JS Object
+                        console.log(JSON.parse(xhro.responseText));
+                        var parsedData = JSON.parse(xhro.responseText);
+                        console.log(parsedData.data.firstname);
+                        console.log(parsedData.data.lastname);
+                        //document.querySelector('a#sidebarNavToggler').closest('li').innerHTML = = 'Welcome '+parsedData.data.firstname+''+parsedData.data.lastname+'<a href="#">Logout</a>';
+                        //document.querySelector('a#sidebarNavToggler').innerHTML = 'Welcome '+parsedData.data.firstname+''+parsedData.data.lastname+'<a href="#">Logout</a>';
+                    }
+                }
 
             })
             // Javascript Code
@@ -225,15 +253,7 @@
             // let classObject = new ClassName()/
             // const classObject = new ClassName()/
             // xhro = xml http request object
-            
-
-           
-
-
-
-
-
-
+        
         </script>
     </body>
 </html>
