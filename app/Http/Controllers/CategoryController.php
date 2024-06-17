@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -21,10 +22,12 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
+     * Show the form for creating a new category.
      */
     public function create()
     {
         //
+        return view('admin.category.create'); //create.blade.php
     }
 
     /**
@@ -33,6 +36,20 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->only('category_name','description');
+        // ClassName::method();
+
+        Category::create($data);
+
+        return redirect('/admin/category/create');
+        //dd($request->all());
+
+        //I want to store incomming data to categories table
+
+        //1. QueryBUilder
+        //2 Eleqoent ORM (Best Way) // 
+        // Model file
+        return 'store';
     }
 
     /**
