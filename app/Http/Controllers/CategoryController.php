@@ -35,21 +35,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       //dd($request->all());
+       $request->validate([
+                            'category_name'=>'required|unique:categories',
+                            'description'=>'',
+                            'cat_image' => 'mimes:jpg,jpeg,png|max:1024',// 1024kb = 1mb
+                          ]); //PHP Associative Array
+
         $data = $request->only('category_name','description');
         // ClassName::method();
 
         Category::create($data);
 
-        return redirect('/admin/category/create');
-        //dd($request->all());
-
-        //I want to store incomming data to categories table
-
-        //1. QueryBUilder
-        //2 Eleqoent ORM (Best Way) // 
-        // Model file
-        return 'store';
+        return back()->with('success','Category created successfully');
     }
 
     /**
