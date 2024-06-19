@@ -41,9 +41,26 @@ class CategoryController extends Controller
                             'description'=>'',
                             'cat_image' => 'mimes:jpg,jpeg,png|max:1024',// 1024kb = 1mb
                           ]); //PHP Associative Array
+        
+        //dd($request->file('cat_image'));
+        $file = $request->file('cat_image');
+        $dst='';                  
+        if($file){
+            
+            $path = $file->store('public/cat_images');
+            //The file is comming
+             // Extract the filename from the path
+            $filename = basename($path);
+            $dst='/storage/cat_images/'.$filename;
+            //dd( );
 
+
+
+        }                 
         $data = $request->only('category_name','description');
         // ClassName::method();
+        $data['picture']=$dst;
+        //dd($data);
 
         Category::create($data);
 
