@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Http\Controllers\AdminBaseController;
 
 use Illuminate\Http\Request;
 
+//Class ChildClass extends ParentClass{}
+// Single Inheritance
+// THis is an example of single inheritance
 class CategoryController extends Controller
 {
     /**

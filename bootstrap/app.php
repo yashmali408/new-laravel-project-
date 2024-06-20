@@ -11,6 +11,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        //$middleware->append(YourMiddleware::class);
+
         $middleware->validateCsrfTokens(except: [
             'customer/login' // <-- exclude this route
         ]);
