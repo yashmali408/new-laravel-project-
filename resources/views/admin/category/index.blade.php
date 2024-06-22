@@ -56,9 +56,13 @@
                                                 <a href="#" class="btn btn-outline-info rounded-circle">
                                                     <i class="fa-regular fa-pen-to-square"></i>
                                                 </a>
-                                                <a href="#" class="btn btn-outline-danger rounded-circle a_delcategory">
-                                                    <i class="fa-solid fa-trash"></i>
-                                                </a>
+                                                <form method="POST" action="{{url('/')}}/admin/category/{{$category->category_id}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-outline-danger rounded-circle a_delcategory">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach

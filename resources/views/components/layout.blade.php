@@ -48,10 +48,10 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
+        <!-- <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{url('/')}}/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
                 width="60">
-        </div>
+        </div> -->
 
         <x-header />
         <x-aside />
@@ -142,25 +142,30 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.querySelector('.a_delcategory').addEventListener('click', ()=>{
+        document.querySelector('.a_delcategory').addEventListener('click', (e)=>{
+            //Stop reloading
+            e.preventDefault();
+
             console.log('OKOKOKOKOKOK');
             
             
             Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                 if (result.isConfirmed) {
+                    
                     Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
                     });
+                   //location.reload();
                 }
                 });
         });

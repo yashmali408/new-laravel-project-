@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 //Class ChildClass extends ParentClass{}
 // Single Inheritance
 // THis is an example of single inheritance
+//CategoryController is resource controller
 class CategoryController extends Controller
 {
     /**
@@ -27,6 +28,7 @@ class CategoryController extends Controller
         // Then pass the category to view
         
         // Return is the last statemetn for every function
+        //'index';//
         return view('admin.category.index',['categories'=>$categories]);
     }
 
@@ -83,6 +85,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         //
+        return 'show';
     }
 
     /**
@@ -91,6 +94,7 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         //
+        return 'edit';
     }
 
     /**
@@ -99,6 +103,7 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         //
+        return 'update';
     }
 
     /**
@@ -106,6 +111,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        return 'destory';
     }
 }
