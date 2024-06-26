@@ -7,7 +7,7 @@
                     <h1 class="m-0">All Brands</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 a_tbdr text-right">
-                    <a href="#" class="btn btn-primary">Add New Brand</a>
+                    <a href="{{route('brands.create')}}" class="btn btn-primary">Add New Brand</a>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
