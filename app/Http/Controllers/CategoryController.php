@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Controllers\AdminBaseController;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 
@@ -111,6 +111,22 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        return 'destory';
+        //Brand::
+        // $dst='/storage/brand_images/'.$filename;
+        //$brand->brand_logo contain the url
+        // Get the filename from the brand's logo URL
+        $filename = basename($category->picture);
+
+        // Define the storage path for the logo
+        $storagePath = 'public/cat_images/' . $filename;
+        //dd($storagePath);
+
+        // Check if the file exists and delete it
+        if (Storage::exists($storagePath)) {
+            Storage::delete($storagePath);
+        }
+        $category->delete();
+
+        return back();
     }
 }

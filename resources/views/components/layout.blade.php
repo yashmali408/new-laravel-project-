@@ -87,9 +87,7 @@
     <script src="{{url('/')}}/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="{{url('/')}}/plugins/sparklines/sparkline.js"></script>
-    <!-- JQVMap -->
-    <script src="{{url('/')}}/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="{{url('/')}}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    
     <!-- jQuery Knob Chart -->
     <script src="{{url('/')}}/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
@@ -145,8 +143,6 @@
         document.querySelector('.a_delcategory').addEventListener('click', (e)=>{
             //Stop reloading
             e.preventDefault();
-
-            console.log('OKOKOKOKOKOK');
             
             
                 Swal.fire({
@@ -169,7 +165,18 @@
                 });
         });
 
+        //object.addEventListener("change", myScript);
+
+        document.querySelector('img#preview').addEventListener('change', (e)=>{
+            console.log('Hi');
+            const [file] = imgInp.files
+            if (file) {
+                blah.src = URL.createObjectURL(file)
+            }
+        });
+
     </script>
+
 </body>
 
 </html>
