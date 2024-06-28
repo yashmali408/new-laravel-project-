@@ -68,15 +68,20 @@ class BrandController extends Controller
      */
     public function show(Brand $brand)
     {
-        //
+        //Every function return somehting
+        return 'show';
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource/brand.
      */
     public function edit(Brand $brand)
     {
-        //
+        
+        //Every function return somehting
+                   //admin/brands/edit.blade.php
+        return view('admin.brands.edit',['brand'=>$brand]);
+
     }
 
     /**
@@ -84,7 +89,37 @@ class BrandController extends Controller
      */
     public function update(Request $request, Brand $brand)
     {
-        //
+        //Validation
+        $request->validate([
+            'brand_name'=>'required|unique:brands',
+            'brand_logo' => 'mimes:jpg,jpeg,png|max:1024|dimensions:width=120,height=80',// 172KB /, 1024kb = 1mb
+            'seo_meta_title'=>'required',
+            'seo_meta_desc'=>'required',
+        ]); //PHP Associative Array
+            //File uploading logic
+
+        //dd($request->input('brand_name'));
+        //dd($brand->brand_name);
+        //Check if file is comming
+        $file = $request->file('brand_logo');
+        $dst='';
+        if($file){
+            $path = $file->store('public/brand_images');
+            //The file is comming
+             // Extract the filename from the path
+            $filename = basename($path);
+            $dst='/storage/brand_images/'.$filename;
+            //dd( );
+        } 
+
+        $brand->update([
+            'brand_name'=>$request->input('brand_name'),
+            'brand_logo'=> $dst==''?$brand->brand_logo:'',
+            'seo_meta_title'=>$request->input('seo_meta_title'),
+            'seo_meta_desc'=>$request->input('seo_meta_desc'),
+        ]);
+
+        return back()->with('success','Brand Updated Successfully');
     }
 
     /**
