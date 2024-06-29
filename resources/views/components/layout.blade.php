@@ -46,7 +46,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade a_mymodel" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -54,11 +54,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+                
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
             </div>
         </div>
@@ -139,7 +138,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{url('/')}}/dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{url('/')}}/dist/js/pages/dashboard.js"></script>
+    <!-- <script src="{{url('/')}}/dist/js/pages/dashboard.js"></script> -->
     <script>
         $(function () {
             $("#example1").DataTable({
@@ -159,7 +158,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        document.querySelector('.a_delcategory').addEventListener('click', (e)=>{
+       /*  document.querySelector('.a_delcategory').addEventListener('click', (e)=>{
             //Stop reloading
             e.preventDefault();
             
@@ -182,20 +181,56 @@
                         
                     }
                 });
-        });
+        }); */
 
         //object.addEventListener("change", myScript);
 
-        document.querySelector('img#preview').addEventListener('change', (e)=>{
+       /*  document.querySelector('img#preview').addEventListener('change', (e)=>{
             console.log('Hi');
             const [file] = imgInp.files
             if (file) {
                 blah.src = URL.createObjectURL(file)
             }
+        }); */
+
+        //Select the a_viewbrand
+        //classObject.method1(arg1).method2("arg1",cbfn)
+        
+        /* document
+        .querySelector('.a_viewbrand')
+        .addEventListener('click', (e)=>{
+            
+        }); */
+        document.querySelectorAll('.a_viewbrand').forEach(function(cv,idx,arr){
+            console.log(cv)
+            cv.addEventListener('click', (e)=>{
+                e.preventDefault();
+                //console.log('anil>>','OKOKOKOKOKOKKO111');
+                console.log('ok')
+
+                        //classObject.method()
+
+                        //classObject.property
+                
+                console.log(e.target.closest('tr').querySelector('td:nth-child(2)').innerText);
+                console.log(e.target.closest('tr').querySelector('td:nth-child(3)').innerHTML);
+                let id = e.target.closest('tr').querySelector('td:first-child').innerText;
+                let brand_name = e.target.closest('tr').querySelector('td:nth-child(2)').innerText;
+                let brand_image = e.target.closest('tr').querySelector('td:nth-child(3)').innerHTML;
+                let content=`
+                                <ul style="list-style:none;">
+                                    <li>${id}</li>
+                                    <li>${brand_name}</li>
+                                    <li>${brand_image}</li>
+                                </ul>`;
+                document.querySelector('.modal-body').innerHTML = content;
+                document.querySelector('.modal-title').innerText = 'Brand Info';
+            })
         });
-
+        
     </script>
-
+    <script>
+        
+    </script>
 </body>
-
 </html>

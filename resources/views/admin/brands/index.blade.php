@@ -44,7 +44,7 @@
                                         <img src="{{$brand->brand_logo}}" />
                                     </td>
                                     <td>
-                                        <a href="/admin/brands/{{$brand->id}}/edit" class="btn btn-outline-info rounded-circle btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <a href="/admin/brands/{{$brand->id}}/edit" class="btn btn-outline-info rounded-circle btn-sm a_viewbrand" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="fa-regular fa-eye"></i>   
                                         </a>
                                         <a href="/admin/brands/{{$brand->id}}/edit" class="btn btn-outline-info rounded-circle btn-sm">
@@ -69,4 +69,5 @@
             </div>
         </div>
     </section>
+    
 </x-layout>
