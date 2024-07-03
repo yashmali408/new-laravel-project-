@@ -25,7 +25,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="POST" action="" enctype="multipart/form-data">
+                        <form method="GET" action="" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -39,10 +39,21 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
+                                            <label for="unit">Unit</label>
+                                            <select name="unit" id="unit" class="select2" style="width: 100%;">
+                                                <option selected>KG</option>
+                                                <option>Pices</option>
+                                                <option>Ltr</option>
+                                            </select>
+                                        </div>  
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
                                             <label>Brand</label>
                                             <select name="brand_id" class="select2" style="width: 100%;">
-                                                <option selected>ASC</option>
-                                                <option>DESC</option>
+                                                @foreach($brands as $brand)
+                                                    <option>{{$brand->brand_name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>  
                                     </div>
@@ -50,8 +61,9 @@
                                         <div class="form-group">
                                             <label>Category</label>
                                             <select name="category_id" class="select2" style="width: 100%;">
-                                                <option selected>ASC</option>
-                                                <option>DESC</option>
+                                                @foreach($categories as $category)
+                                                    <option>{{$category->category_name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
