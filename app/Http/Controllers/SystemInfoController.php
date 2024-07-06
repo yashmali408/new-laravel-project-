@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unit;
+use App\Models\SystemInfo;
 use Illuminate\Http\Request;
 
-class UnitController extends Controller
+class SystemInfoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,9 +13,6 @@ class UnitController extends Controller
     public function index()
     {
         //
-        $units = Unit::all();
-        //return 'create index';
-        return view('admin.units.index',['units'=> $units]);
     }
 
     /**
@@ -24,7 +21,6 @@ class UnitController extends Controller
     public function create()
     {
         //
-        return view('admin.units.create');
     }
 
     /**
@@ -33,15 +29,12 @@ class UnitController extends Controller
     public function store(Request $request)
     {
         //
-        dd();
-        return 'store';
-
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Unit $unit)
+    public function show(SystemInfo $systemInfo)
     {
         //
     }
@@ -49,7 +42,7 @@ class UnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Unit $unit)
+    public function edit(SystemInfo $systemInfo)
     {
         //
     }
@@ -57,7 +50,7 @@ class UnitController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Unit $unit)
+    public function update(Request $request, SystemInfo $systemInfo)
     {
         //
     }
@@ -65,8 +58,15 @@ class UnitController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Unit $unit)
+    public function destroy(SystemInfo $systemInfo)
     {
         //
+    }
+
+    public function login(SystemInfo $systemInfo){
+        //I can write all login inside controller
+        $app_logo = $systemInfo->where('meta_name', 'app_logo')->first()->meta_value;
+       
+        return view('admin.login',['app_logo'=>$app_logo]);
     }
 }

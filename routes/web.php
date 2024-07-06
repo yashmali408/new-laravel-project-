@@ -8,6 +8,9 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\SystemInfoController;
+
+
 use App\Http\Middleware\AdminAuth;
 
 /*   Frontend Routes     */
@@ -67,10 +70,7 @@ Route::get('/contact-v1',function(){
 /*   Backend/Admin Routes     */
 
 Route::prefix('admin')->middleware(AdminAuth::class)->group(function () { // /admin/login
-    Route::get('/', function () {
-        // Matches The "/admin/login" URL
-        return view('admin.login'); //login.blade.php
-    })->withoutMiddleware([AdminAuth::class]);
+    Route::get('/', [SystemInfoController::class,'login'])->withoutMiddleware([AdminAuth::class]);
     Route::get('/login', function () {
         // Matches The "/admin/login" URL
         return view('admin.login'); //login.blade.php
