@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $app_logo = SystemInfo::where('meta_name', 'app_logo')->first()->meta_value;
 
         $data = [
-            'app_name' =>  $app_name,
+            'app_name' => $app_name,
             'app_version' => $app_version,
             'app_logo' => $app_logo
         ];

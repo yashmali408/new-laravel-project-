@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -26,7 +27,10 @@ class ProductController extends Controller
         $brands = Brand::all();
         // Get Category
         $categories = Category::all();
-        return view('admin.products.create',['brands'=>$brands,'categories'=>$categories]);
+        // Get Unit
+        $units = Unit::all();
+
+        return view('admin.products.create',['units'=>$units,'brands'=>$brands,'categories'=>$categories]);
     }
 
     /**
@@ -35,6 +39,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        //dd($request->all());
+
+        //Skippig validation
+
+        //Direct INsert
+
+        $data = $request->only('product_name','product_desc','unit_id','brand_id','category_id','mrp','sell_price','qty_available');
+        // ClassName::method();
+
+        //dd($data);
+
+        Product::create($data);
+
+        return back();
     }
 
     /**
