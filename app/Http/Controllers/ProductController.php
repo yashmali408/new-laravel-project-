@@ -42,6 +42,9 @@ class ProductController extends Controller
         //dd($request->all());
 
         //Skippig validation
+        //1. Client Side Javascript
+        
+        //2. ServerSide PHP/Laravel Fraemwork MVC
 
         //Direct INsert
 
