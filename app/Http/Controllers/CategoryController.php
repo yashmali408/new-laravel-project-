@@ -65,9 +65,6 @@ class CategoryController extends Controller
             $filename = basename($path);
             $dst='/storage/cat_images/'.$filename;
             //dd( );
-
-
-
         }                 
         $data = $request->only('category_name','description');
         // ClassName::method();

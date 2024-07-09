@@ -70,13 +70,13 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="mrp">MRP</label>
-                                            <input id="mrp" required name="mrp" type="number" class="form-control" min="0" max="100" />
+                                            <input id="mrp" required name="mrp" type="number" class="form-control" min="0" />
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="sell_price">Sell Price</label>
-                                            <input id="sell_price" required name="sell_price" type="number" min="0" max="100" class="form-control"/>
+                                            <input id="sell_price" required name="sell_price" type="number" min="0" class="form-control"/>
                                         </div>
                                     </div>
                                     <div class="col">

@@ -43,7 +43,7 @@ class ProductController extends Controller
 
         //Skippig validation
         //1. Client Side Javascript
-        
+
         //2. ServerSide PHP/Laravel Fraemwork MVC
 
         //Direct INsert
@@ -51,10 +51,33 @@ class ProductController extends Controller
         $data = $request->only('product_name','product_desc','unit_id','brand_id','category_id','mrp','sell_price','qty_available');
         // ClassName::method();
 
-        //dd($data);
-
+        $prod_thumbnail_img = $request->file('prod_thumbnail_img');
+        $prod_thumbnail_img_dst='';                  
+        if($prod_thumbnail_img){
+            
+            $path = $prod_thumbnail_img->store('public/prod_img');
+            //The file is comming
+             // Extract the filename from the path
+            $filename = basename($path);
+            $prod_thumbnail_img_dst='/storage/prod_img/'.$filename;
+            //dd( );
+        }
+        $prod_main_img = $request->file('prod_main_img');
+        $prod_main_img_dst='';                  
+        if($prod_main_img){
+            
+            $path = $prod_main_img->store('public/prod_img');
+            //The file is comming
+             // Extract the filename from the path
+            $filename = basename($path);
+            $prod_main_img_dst='/storage/prod_img/'.$filename;
+            //dd( );
+        }
+        $data['prod_thumbnail_img']=$prod_thumbnail_img_dst;
+        $data['prod_main_img']=$prod_main_img_dst;
         Product::create($data);
 
+        //Every function return something
         return back();
     }
 

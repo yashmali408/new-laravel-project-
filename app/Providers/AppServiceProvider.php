@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     
-        /* $app_name = SystemInfo::where('meta_name', 'app_name')->first()->meta_value;
+        $app_name = SystemInfo::where('meta_name', 'app_name')->first()->meta_value;
         $app_version = SystemInfo::where('meta_name', 'app_version')->first()->meta_value;
         $app_logo = SystemInfo::where('meta_name', 'app_logo')->first()->meta_value;
 
@@ -34,6 +34,6 @@ class AppServiceProvider extends ServiceProvider
             'app_logo' => $app_logo
         ]; 
     
-        View::share('appData', $data); */ 
+        View::share('appData', $data);
     }
 }
