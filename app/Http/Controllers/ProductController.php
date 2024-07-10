@@ -14,8 +14,14 @@ class ProductController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
+    {   
+        //Get the product data from models
+        //1. Query Builder
+        //2. Eleqouent
+        //3. Model Factory
+        $products = Product::all();
+        
+        return view('admin.products.index',['products'=>$products]);
     }
 
     /**
@@ -45,6 +51,18 @@ class ProductController extends Controller
         //1. Client Side Javascript
 
         //2. ServerSide PHP/Laravel Fraemwork MVC
+        $request->validate([
+            'product_name'=>'required',
+            'product_desc'=>'required',
+            'brand_id'=>'required|integer',
+            'unit_id'=>'required|integer',
+            'category_id'=>'required|integer',
+            'mrp'=>'required|numeric',
+            'sell_price'=>'required|numeric',
+            'qty_available'=>'required|integer',
+            'prod_thumbnail_img' => 'required|mimes:jpg,jpeg,png|max:1024|dimensions:width=212,height=200',// 1024kb = 1mb
+            'prod_main_img' => 'required|mimes:jpg,jpeg,png|max:1024|dimensions:width=720,height=660',// 1024kb = 1mb
+        ]);
 
         //Direct INsert
 
@@ -78,7 +96,7 @@ class ProductController extends Controller
         Product::create($data);
 
         //Every function return something
-        return back();
+        return back()->with('success','Product created successfully!');
     }
 
     /**
