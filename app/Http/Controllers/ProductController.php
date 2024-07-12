@@ -19,7 +19,19 @@ class ProductController extends Controller
         //1. Query Builder
         //2. Eleqouent
         //3. Model Factory
-        $products = Product::all();
+        /*
+        $result = User
+        ::join('contacts', 'users.id', '=', 'contacts.user_id')
+        ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->select('users.id', 'contacts.phone', 'orders.price')
+        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->get();
+        */
+        $products = Product
+        ::join('brands','products.brand_id','=','brands.id')
+        ->join('units','products.unit_id','=','units.id')
+        ->join('categories','products.category_id','=','categories.category_id')
+        ->get();
         
         return view('admin.products.index',['products'=>$products]);
     }

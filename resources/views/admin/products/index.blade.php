@@ -26,9 +26,9 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <pre>
-                            {{var_dump($products)}}
-                            </pre>
+                            <!-- <pre>
+                                {{var_dump($products)}}
+                            </pre> -->
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -36,19 +36,29 @@
                                         <th>Product Name</th>
                                         <th>Description</th>
                                         <th>Brand</th>
+                                        <th>CategoryName</th>
                                         <th>Product Thumbnail</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>#Id</td>
-                                        <td>Product Name</td>
-                                        <td>Description</td>
-                                        <td>Brand</td>
-                                        <td>Product Thumbnail</td>
-                                        <td>Action</td>
-                                    </tr>
+                                    @foreach ($products as $product)
+                                        <tr>
+                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->product_name}}</td>
+                                            <td>{{$product->product_desc}}</td>
+                                            <td>{{$product->brand_name}}</td>
+                                            <td>{{$product->category_name}}</td>
+                                            <td>
+                                                <img src="{{$product->prod_thumbnail_img}}" />
+                                            </td>
+                                            <td>
+                                                <a href="#">V<a>
+                                                <a href="#">E<a>
+                                                <a href="#">D<a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
