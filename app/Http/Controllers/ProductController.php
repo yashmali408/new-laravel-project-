@@ -31,6 +31,7 @@ class ProductController extends Controller
         ::join('brands','products.brand_id','=','brands.id')
         ->join('units','products.unit_id','=','units.id')
         ->join('categories','products.category_id','=','categories.category_id')
+        ->select('products.id as product_id', 'products.*', 'brands.*', 'units.*', 'categories.*')
         ->get();
         
         return view('admin.products.index',['products'=>$products]);
@@ -117,6 +118,13 @@ class ProductController extends Controller
     public function show(Product $product)
     {
         //
+        // Eager load relationships
+        $product->load('brand', 'unit', 'category');
+        //ClassObject->property
+        //dd($product);
+        //show.blade.php
+        return view('admin.products.show',compact('product'));
+
     }
 
     /**

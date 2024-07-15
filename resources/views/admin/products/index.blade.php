@@ -29,6 +29,7 @@
                             <!-- <pre>
                                 {{var_dump($products)}}
                             </pre> -->
+                            
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -44,7 +45,7 @@
                                 <tbody>
                                     @foreach ($products as $product)
                                         <tr>
-                                            <td>{{$product->id}}</td>
+                                            <td>{{$product->product_id}}</td>
                                             <td>{{$product->product_name}}</td>
                                             <td>{{$product->product_desc}}</td>
                                             <td>{{$product->brand_name}}</td>
@@ -53,9 +54,19 @@
                                                 <img src="{{$product->prod_thumbnail_img}}" />
                                             </td>
                                             <td>
-                                                <a href="#">V<a>
-                                                <a href="#">E<a>
-                                                <a href="#">D<a>
+                                                <a href="/admin/products/{{$product->product_id}}" class="btn btn-outline-info rounded-circle btn-sm">
+                                                    <i class="fa-regular fa-eye"></i>   
+                                                </a>
+                                                <a href="#" class="btn btn-outline-info rounded-circle btn-sm">
+                                                    <i class="fa-regular fa-pen-to-square"></i>   
+                                                </a>
+                                                <form method="POST" action="#">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-outline-danger rounded-circle btn-sm" onclick="return confirm('Do you really want to delete?')">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
