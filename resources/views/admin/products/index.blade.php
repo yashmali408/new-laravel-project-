@@ -20,6 +20,12 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @if(Session::has('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{ Session::get('success') }}</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Product List</h3>
@@ -57,13 +63,13 @@
                                                 <a href="/admin/products/{{$product->product_id}}" class="btn btn-outline-info rounded-circle btn-sm">
                                                     <i class="fa-regular fa-eye"></i>   
                                                 </a>
-                                                <a href="#" class="btn btn-outline-info rounded-circle btn-sm">
+                                                <a href="/admin/products/{{$product->product_id}}/edit" class="btn btn-outline-info rounded-circle btn-sm">
                                                     <i class="fa-regular fa-pen-to-square"></i>   
                                                 </a>
-                                                <form method="POST" action="#">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button class="btn btn-outline-danger rounded-circle btn-sm" onclick="return confirm('Do you really want to delete?')">
+                                                <form method="POST" action="/admin/products/{{$product->product_id}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-outline-danger rounded-circle btn-sm" onclick="return confirm('Do you really want to delete?')">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
