@@ -134,7 +134,15 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('admin.products.edit');
+        $brands = Brand::all();
+        $categories = Category::all();
+        $units = Unit::all();
+        return view('admin.products.edit',[
+                                            'product'=>$product,
+                                            'brands'=>$brands,
+                                            'categories'=>$categories,
+                                            'units'=>$units,
+                                          ]);
     }
 
     /**
@@ -143,6 +151,23 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         //
+        echo '<pre>';
+        print_r($request->all());
+        echo '</pre>';
+        //return 'update';
+        $product->update([
+            'product_name'=>$request->all()['product_name'],
+            'product_desc'=>$request->all()['product_desc'],
+            'unit_id'=>$request->all()['unit_id'],
+            'brand_id'=>$request->all()['brand_id'],
+            'category_id'=>$request->all()['category_id'],
+            'mrp'=>$request->all()['mrp'],
+            'sell_price'=>$request->all()['sell_price'],
+            'qty_available'=>$request->all()['qty_available']
+        ]);
+
+        return back()->with('success','Product Updated successflully');
+        
     }
 
     /**
