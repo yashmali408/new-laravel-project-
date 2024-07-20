@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductFilterController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\ProductController;
@@ -15,20 +17,18 @@ use App\Http\Middleware\AdminAuth;
 
 /*   Frontend Routes     */
 
-Route::get('/', function () {
-    return view('home');
-})->name('homeroute');
+Route::get('/', [HomeController::class,'home'])->name('homeroute');
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 
 
 Route::prefix('/shop')->group(function () {
+    Route::get('/shop-grid',[ProductFilterController::class,'filter'])->name('shop-grid');;
+    
     Route::get('/cart',function(){
         return view('shop/cart');
     });
-    Route::get('/shop-grid',function(){
-        return view('shop/shop-grid'); //shop-grid.blade.php
-    });
+    
     Route::get('/my-account',function(){
         return view('shop/my-account'); //my-account.blade.php
     });

@@ -1234,46 +1234,17 @@
                                 <h4 class="font-size-14 mb-3 font-weight-bold">Brands</h4>
 
                                 <!-- Checkboxes -->
+                                {{var_dump($brands)}}
                                 <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="brandAdidas">
-                                        <label class="custom-control-label" for="brandAdidas">Adidas
+                                        <label class="custom-control-label" for="brandAdidas">AA
                                             <span class="text-gray-25 font-size-12 font-weight-normal"> (56)</span>
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brandNewBalance">
-                                        <label class="custom-control-label" for="brandNewBalance">New Balance
-                                            <span class="text-gray-25 font-size-12 font-weight-normal"> (56)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brandNike">
-                                        <label class="custom-control-label" for="brandNike">Nike
-                                            <span class="text-gray-25 font-size-12 font-weight-normal"> (56)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brandFredPerry">
-                                        <label class="custom-control-label" for="brandFredPerry">Fred Perry
-                                            <span class="text-gray-25 font-size-12 font-weight-normal"> (56)</span>
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="form-group d-flex align-items-center justify-content-between mb-2 pb-1">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="brandTnf">
-                                        <label class="custom-control-label" for="brandTnf">The North Face
-                                            <span class="text-gray-25 font-size-12 font-weight-normal"> (56)</span>
-                                        </label>
-                                    </div>
-                                </div>
+                                
+                                
                                 <!-- End Checkboxes -->
 
                                 <!-- View More - Collapse -->
