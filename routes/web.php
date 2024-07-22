@@ -24,7 +24,15 @@ Route::post('/login',[AuthController::class,'login'])->name('login');
 
 Route::prefix('/shop')->group(function () {
     Route::get('/shop-grid',[ProductFilterController::class,'filter'])->name('shop-grid');;
-    
+    Route::get('/shop',function(){
+        return view('shop/shop'); //shop.blade.php
+    });
+
+    Route::get('/single-product-fullwidth',function(){
+        return view('shop/single-product-fullwidth'); //shop.blade.php
+    });
+
+
     Route::get('/cart',function(){
         return view('shop/cart');
     });
@@ -41,9 +49,7 @@ Route::prefix('/shop')->group(function () {
     Route::get('/compare',function(){
         return view('shop/compare'); //compare.blade.php
     });
-    Route::get('/shop',function(){
-        return view('shop/shop'); //shop.blade.php
-    });
+    
     Route::get('/checkout',function(){
         return view('shop/checkout'); //checkout.blade.php
     });
