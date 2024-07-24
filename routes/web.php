@@ -27,6 +27,9 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop',function(){
         return view('shop/shop'); //shop.blade.php
     });
+    Route::get('/wishlist',function(){
+        return view('shop/wishlist'); //shop.blade.php
+    });
 
     Route::get('/single-product-fullwidth',function(){
         return view('shop/single-product-fullwidth'); //shop.blade.php
