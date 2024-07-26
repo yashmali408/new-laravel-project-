@@ -18,6 +18,8 @@ use App\Http\Middleware\AdminAuth;
 /*   Frontend Routes     */
 
 Route::get('/', [HomeController::class,'home'])->name('homeroute');
+// Route for product slugs
+Route::get('/{slug}', [HomeController::class, 'show'])->name('home.show');
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 
