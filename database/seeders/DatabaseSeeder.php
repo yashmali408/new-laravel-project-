@@ -15,12 +15,36 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
-        User::factory()->create([
-            'name' => 'Anil',
-            'surname' => 'Dollor',
-            'email' => 'admin1@gmail.com',
-            'password' => 'admin1@gmail.com',
-            'role' => 'admin',
+        User::insert([
+            [
+                'name' => 'Anil',
+                'surname' => 'Dollor',
+                'email' => 'admin1@gmail.com',
+                'password' => 'admin1@gmail.com',
+                'role' => 'admin',
+            ],
+            [
+                'name' => 'Anil',
+                'surname' => 'Sharma',
+                'email' => 'customer1@gmail.com',
+                'password' => 'customer1@gmail.com',
+                'role' => 'customer',
+            ],
+            [
+                'name' => 'Abhishek',
+                'surname' => 'Bairagi',
+                'email' => 'customer2@gmail.com',
+                'password' => 'customer2@gmail.com',
+                'role' => 'customer',
+            ],
+            [
+                'name' => 'Rajveer',
+                'surname' => 'Singh',
+                'email' => 'customer3@gmail.com',
+                'password' => 'customer3@gmail.com',
+                'role' => 'customer',
+            ]
+            
 
         ]);
         //Elequent ORM method

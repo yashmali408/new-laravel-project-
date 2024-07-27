@@ -77,14 +77,15 @@
                             <h2 class="font-size-25 text-lh-1dot2">{{$product->product_name}}</h2>
                             <div class="mb-2">
                                 <a class="d-inline-flex align-items-center small font-size-15 text-lh-1" href="#">
-                                    <div class="text-warning mr-2">
+                                {{$averageRating}}    
+                                <div class="text-warning mr-2">
                                         <small class="fas fa-star"></small>
                                         <small class="fas fa-star"></small>
                                         <small class="fas fa-star"></small>
                                         <small class="fas fa-star"></small>
                                         <small class="far fa-star text-muted"></small>
                                     </div>
-                                    <span class="text-secondary font-size-13">(3 customer reviews)</span>
+                                    <span class="text-secondary font-size-13">({{$customerReviewCount}} customer reviews)</span>
                                 </a>
                             </div>
                             <div class="d-md-flex align-items-center">
@@ -105,7 +106,7 @@
                             </ul>
                         </div>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-                        <p><strong>SKU</strong>: FW511948218</p>
+                        <p><strong>SKU</strong>: {{$product->sku}}</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
                                 <ins class="font-size-36 text-decoration-none">${{$product->sell_price}}</ins>
