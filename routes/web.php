@@ -11,6 +11,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SystemInfoController;
+use App\Http\Controllers\ChatController;
 
 
 use App\Http\Middleware\AdminAuth;
@@ -20,6 +21,7 @@ use App\Http\Middleware\AdminAuth;
 Route::get('/', [HomeController::class,'home'])->name('homeroute');
 // Route for product slugs
 Route::get('/{slug}', [HomeController::class, 'show'])->name('home.show');
+Route::get('/chat/chat', [ChatController::class, 'chat']);
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 

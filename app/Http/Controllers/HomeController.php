@@ -37,8 +37,13 @@ class HomeController extends Controller
         ->where('product_id', $product->id)
         ->avg('rating');
         //dd($averageRating);
+
+        $product_gallery_images = Product::join('product_gallery_images','products.id','=','product_gallery_images.product_id')
+        ->get();
+        
         return view('shop/single-product-fullwidth',[
                                                         'product'=>$product,
+                                                        'product_gallery_images'=>$product_gallery_images,
                                                         'customerReviewCount'=>$customerReviewCount,
                                                         'averageRating'=>$averageRating
                                                     ]); //shop.blade.php

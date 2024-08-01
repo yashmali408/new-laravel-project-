@@ -47,27 +47,18 @@
                             <img class="img-fluid" src="/assets/img/720X660/img5.jpg" alt="Image Description">
                         </div>
                     </div>
-                    {{$product->prod_gallery_imgs}}
+                    
+
                     <div id="sliderSyncingThumb" class="js-slick-carousel u-slick u-slick--slider-syncing u-slick--slider-syncing-size u-slick--gutters-1 u-slick--transform-off"
                         data-infinite="true"
                         data-slides-show="5"
                         data-is-thumbs="true"
                         data-nav-for="#sliderSyncingNav">
+                        @foreach($product_gallery_images as $product_gallery_image)
                         <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img1.jpg" alt="Image Description">
+                            <img class="img-fluid" src="{{$product_gallery_image->image_url}}" alt="Image Description">
                         </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img2.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img3.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img4.jpg" alt="Image Description">
-                        </div>
-                        <div class="js-slide" style="cursor: pointer;">
-                            <img class="img-fluid" src="/assets/img/720X660/img5.jpg" alt="Image Description">
-                        </div>
+                        @endforeach()
                     </div>
                 </div>
                 <div class="col-md-7 mb-md-6 mb-lg-0">
@@ -102,15 +93,9 @@
                             <a href="#" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                         </div>
-                        <div class="mb-2">
-                            <ul class="font-size-14 pl-3 ml-1 text-gray-110">
-                                <li>4.5 inch HD Touch Screen (1280 x 720)</li>
-                                <li>Android 4.4 KitKat OS</li>
-                                <li>1.4 GHz Quad Core™ Processor</li>
-                                <li>20 MP Electro and 28 megapixel CMOS rear camera</li>
-                            </ul>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+
+                        {!! $product->product_desc !!}
+                        
                         <p><strong>SKU</strong>: {{$product->sku}}</p>
                         <div class="mb-4">
                             <div class="d-flex align-items-baseline">
