@@ -34,6 +34,12 @@
         <link rel="stylesheet" href="/assets/css/theme.css">
         <style>
             /* CSS Code */
+            .a_tbdr{
+                border:1px dashed red;
+            }
+            .a_chat{
+                font-size:1.5em;
+            }
         </style>
     </head>
     <body>
@@ -254,7 +260,30 @@
             // let classObject = new ClassName()/
             // const classObject = new ClassName()/
             // xhro = xml http request object
-        
+            
+        </script>
+        <script>
+            //ChatForm Coading
+            console.log(document.querySelector('form#chatForm'))
+            document
+                .querySelector('form#chatForm')
+                .addEventListener('submit',function(e){
+                    e.preventDefault();
+                    console.log('Hi');
+                    console.log(document.querySelector('input.chatInput').value);
+                    var x = document.querySelector('input.chatInput').value;
+                    document.querySelector('.chatCard .card-body').innerHTML += `<span class="clearfix mb-1 mt-1"> 
+                                                                                    <span class="badge text-white float-right a_chat bg-warning">${x}</span>
+                                                                                </span>`;
+                    
+                    document.querySelector('input.chatInput').value='';
+                });
+            document
+                .querySelector('input.chatInput')
+                .addEventListener('keydown',function(e){
+                    //console.log('e > ',e)
+                    //console.log('Hello',e.target.value);
+                });
         </script>
     </body>
 </html>
