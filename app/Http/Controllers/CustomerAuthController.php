@@ -77,4 +77,18 @@ class CustomerAuthController extends Controller
             return back()->with('failed','Invalid Credentials.');
         }
     }
+
+    public function logout(Request $request){
+        // Log out the user
+        Auth::logout();
+
+        // Clear all session data if needed
+        $request->session()->invalidate();
+
+        // Regenerate session token to prevent session fixation
+        $request->session()->regenerateToken();
+
+        // Redirect to the login page with a success message
+        return redirect('/')->with('success', 'You have logged out successfully.');
+    }
 }

@@ -517,45 +517,59 @@ div.zoomContainer{
                                 </ul>
                                 <!-- End Ratings -->
                             </div>
-                            <div class="col-md-6">
-                                <h3 class="font-size-18 mb-5">Add a review</h3>
-                                <!-- Form -->
-                                <form class="js-validate">
-                                    <div class="row align-items-center mb-4">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="rating" class="form-label mb-0">Your Review</label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <a href="#" class="d-block">
-                                                <div class="text-warning text-ls-n2 font-size-16">
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star"></small>
-                                                    <small class="far fa-star"></small>
+                            @php
+                                if(session('firstname') && $is_purchased==true){
+                                    @endphp
+                                    <div class="col-md-6">
+                                        <h3 class="font-size-18 mb-5">Add a review</h3>
+                                        <!-- Form -->
+                                        <form class="js-validate">
+                                            <div class="row align-items-center mb-4">
+                                                <div class="col-md-4 col-lg-3">
+                                                    <label for="rating" class="form-label mb-0">Your Review</label>
                                                 </div>
-                                            </a>
-                                        </div>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <a href="#" class="d-block">
+                                                        <div class="text-warning text-ls-n2 font-size-16">
+                                                            <small class="far fa-star"></small>
+                                                            <small class="far fa-star"></small>
+                                                            <small class="far fa-star"></small>
+                                                            <small class="far fa-star"></small>
+                                                            <small class="far fa-star"></small>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="js-form-message form-group mb-3 row">
+                                                <div class="col-md-4 col-lg-3">
+                                                    <label for="descriptionTextarea" class="form-label">Your Review</label>
+                                                </div>
+                                                <div class="col-md-8 col-lg-9">
+                                                    <textarea class="form-control" rows="3" id="descriptionTextarea"
+                                                    data-msg="Please enter your message."
+                                                    data-error-class="u-has-error"
+                                                    data-success-class="u-has-success"></textarea>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="offset-md-4 offset-lg-3 col-auto">
+                                                    <button type="submit" class="btn btn-primary-dark btn-wide transition-3d-hover">Add Review</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <!-- End Form -->
                                     </div>
-                                    <div class="js-form-message form-group mb-3 row">
-                                        <div class="col-md-4 col-lg-3">
-                                            <label for="descriptionTextarea" class="form-label">Your Review</label>
-                                        </div>
-                                        <div class="col-md-8 col-lg-9">
-                                            <textarea class="form-control" rows="3" id="descriptionTextarea"
-                                            data-msg="Please enter your message."
-                                            data-error-class="u-has-error"
-                                            data-success-class="u-has-success"></textarea>
-                                        </div>
+                                    @php
+                                }else{
+                                    @endphp
+                                    <div class="col-md-6">
+                                        <h3 class="font-size-18 mb-5 text-danger">You must be logged in</h3>
+                                        <h3 class="font-size-18 mb-5 text-danger" >You must purchase this product to give review</h3>  
                                     </div>
-                                    <div class="row">
-                                        <div class="offset-md-4 offset-lg-3 col-auto">
-                                            <button type="submit" class="btn btn-primary-dark btn-wide transition-3d-hover">Add Review</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- End Form -->
-                            </div>
+                                    @php
+                                }
+                            @endphp
+                            
                         </div>
 
                         <!-- Review -->
