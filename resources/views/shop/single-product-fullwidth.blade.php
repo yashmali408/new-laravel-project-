@@ -518,12 +518,14 @@ div.zoomContainer{
                                 <!-- End Ratings -->
                             </div>
                             @php
-                                if(session('firstname') && $is_purchased==true){
+                                if(session('firstname') && $is_purchased==true && $had_given_review_previously===false){
                                     @endphp
                                     <div class="col-md-6">
                                         <h3 class="font-size-18 mb-5">Add a review</h3>
                                         <!-- Form -->
-                                        <form class="js-validate">
+                                        <form class="js-validate" method="POST" action="{{route('review.store')}}">
+                                            @csrf
+                                            <input type="hidden" name="product_id" value="{{$product->id}}" />
                                             <div class="row align-items-center mb-4">
                                                 <div class="col-md-4 col-lg-3">
                                                     <label for="rating" class="form-label mb-0">Your Review</label>
@@ -531,11 +533,12 @@ div.zoomContainer{
                                                 <div class="col-md-8 col-lg-9">
                                                     <a href="#" class="d-block">
                                                         <div class="text-warning text-ls-n2 font-size-16">
-                                                            <small class="far fa-star"></small>
-                                                            <small class="far fa-star"></small>
-                                                            <small class="far fa-star"></small>
-                                                            <small class="far fa-star"></small>
-                                                            <small class="far fa-star"></small>
+                                                            <small class="far fa-star" data-value="1"></small>
+                                                            <small class="far fa-star" data-value="2"></small>
+                                                            <small class="far fa-star" data-value="3"></small>
+                                                            <small class="far fa-star" data-value="4"></small>
+                                                            <small class="far fa-star" data-value="5"></small>
+                                                            <input type="hidden" name="rating" value="5" />
                                                         </div>
                                                     </a>
                                                 </div>
@@ -545,7 +548,7 @@ div.zoomContainer{
                                                     <label for="descriptionTextarea" class="form-label">Your Review</label>
                                                 </div>
                                                 <div class="col-md-8 col-lg-9">
-                                                    <textarea class="form-control" rows="3" id="descriptionTextarea"
+                                                    <textarea name="reviewContent" class="form-control" rows="3" id="descriptionTextarea"
                                                     data-msg="Please enter your message."
                                                     data-error-class="u-has-error"
                                                     data-success-class="u-has-success"></textarea>
@@ -563,8 +566,13 @@ div.zoomContainer{
                                 }else{
                                     @endphp
                                     <div class="col-md-6">
-                                        <h3 class="font-size-18 mb-5 text-danger">You must be logged in</h3>
+                                        @php
+                                        if(!session('firstname')){
+                                            echo '<h3 class="font-size-18 mb-5 text-danger">You must be logged in</h3>';
+                                        }
+                                        @endphp
                                         <h3 class="font-size-18 mb-5 text-danger" >You must purchase this product to give review</h3>  
+                                        <h3 class="font-size-18 mb-5 text-danger" >Must not had given review previously</h3>  
                                     </div>
                                     @php
                                 }
@@ -796,7 +804,7 @@ div.zoomContainer{
                         }
                     }, {
                         "breakpoint": 768,
-                        "settings": {
+                        "settings": fancy{
                             "slidesToShow": 1
                         }
                     }, {
@@ -841,5 +849,6 @@ div.zoomContainer{
         <!-- End Brand Carousel -->
     </div>
 </main>
+
 <!-- ========== END MAIN CONTENT ========== -->
 @endsection

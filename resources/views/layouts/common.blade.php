@@ -705,7 +705,6 @@
         <script src="/assets/vendor/svg-injector/dist/svg-injector.min.js"></script>
         <script src="/assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
         <script src="/assets/vendor/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script src="/assets/vendor/typed.js/lib/typed.min.js"></script>
         <script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
@@ -768,7 +767,7 @@
                 $.HSCore.components.HSQantityCounter.init('.js-quantity');
 
                 // initialization of popups
-                $.HSCore.components.HSFancyBox.init('.js-fancybox');
+                //$.HSCore.components.HSFancyBox.init('.js-fancybox');
 
                 // initialization of countdowns
                 var countdowns = $.HSCore.components.HSCountdown.init('.js-countdown', {
@@ -802,7 +801,7 @@
                 $.HSCore.components.HSShowAnimation.init('.js-animation-link');
 
                 // initialization of fancybox
-                $.HSCore.components.HSFancyBox.init('.js-fancybox');
+                //$.HSCore.components.HSFancyBox.init('.js-fancybox');
 
                 // initialization of slick carousel
                 $.HSCore.components.HSSlickCarousel.init('.js-slick-carousel');
@@ -841,6 +840,15 @@
                 // initialization of select picker
                 $.HSCore.components.HSSelectPicker.init('.js-select');
             });
+        </script>
+        <script>
+           /*  document
+            .querySelector('small.far.fa-star')
+            .addEventListener('click', function (e) {
+                e.preventDefault();
+                console.log('OKOKOKOKOKOKO');
+            }); */
+
         </script>
     </body>
 </html>

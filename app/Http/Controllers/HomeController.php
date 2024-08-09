@@ -80,6 +80,12 @@ class HomeController extends Controller
 
         $is_purchased= $is_purchased_count>0?true:false;
         
+
+        $had_given_review_previously_count = DB::table('reviews')
+        ->where('product_id', $product->id)
+        ->where('customer_id', Auth::id())
+        ->count();
+        $had_given_review_previously = ($had_given_review_previously_count>0)?true:false;
         return view('shop/single-product-fullwidth',[
                                                         'product'=>$product,
                                                         'product_gallery_images'=>$product_gallery_images,
@@ -91,7 +97,8 @@ class HomeController extends Controller
                                                         'rating3'=>$rating3,
                                                         'rating2'=>$rating2,
                                                         'rating1'=>$rating1,
-                                                        'is_purchased'=>$is_purchased
+                                                        'is_purchased'=>$is_purchased,
+                                                        'had_given_review_previously'=>$had_given_review_previously,
                                                     ]); //shop.blade.php
     }
 }
