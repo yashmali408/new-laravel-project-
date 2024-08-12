@@ -98,18 +98,44 @@ div.zoomContainer{
                             </div>
                         </div>
                         <div class="border-top border-bottom py-3 mb-4">
-                            <div class="d-flex align-items-center">
-                                <h6 class="font-size-14 mb-0">Color</h6>
-                                <!-- Select -->
-                                <select class="js-select selectpicker dropdown-select ml-3"
-                                    data-style="btn-sm bg-white font-weight-normal py-2 border">
-                                    <option value="one" selected>White with Gold</option>
-                                    <option value="two">Red</option>
-                                    <option value="three">Green</option>
-                                    <option value="four">Blue</option>
-                                </select>
-                                <!-- End Select -->
-                            </div>
+                            @php
+                            // Array to hold single value attributes
+                            $singleValueAttributes = [];
+
+                            // Array to hold multiple value attributes
+                            $multipleValueAttributes = [];
+
+                            foreach ($attributes as $key => $values) {
+                                if (count($values) > 1) {
+                                    // Multiple values: Store in an array for later display
+                                    $multipleValueAttributes[$key] = $values;
+                                } else {
+                                    // Single value: Store in an array for immediate display
+                                    $singleValueAttributes[$key] = $values[0];
+                                }
+                            }
+
+                            // Display multiple value attributes as select dropdowns
+                            foreach ($multipleValueAttributes as $key => $values) {
+                                echo "<div class='d-flex align-items-center'>";
+                                echo "<h6 class='font-size-14 mb-0'>{$key}</h6>";
+                                echo "<select class='js-select selectpicker dropdown-select ml-3' data-style='btn-sm bg-white font-weight-normal py-2 border'>";
+                                foreach ($values as $value) {
+                                    $selected = $value === $values[0] ? ' selected' : ''; // Set the first option as selected
+                                    echo "<option value='" . strtolower($value) . "'$selected>$value</option>";
+                                }
+                                echo "</select>";
+                                echo "</div>";
+                            }
+
+                            // Display single value attributes as span elements
+                            foreach ($singleValueAttributes as $key => $value) {
+                                echo "<div class='d-flex align-items-center'>";
+                                echo "<h6 class='font-size-14 mb-0'>{$key}</h6>";
+                                echo "<span class='ml-3'>{$value}</span>";
+                                echo "</div>";
+                            }
+                            @endphp
                         </div>
                         <div class="d-md-flex align-items-end mb-3">
                             <div class="max-width-150 mb-4 mb-md-0">
