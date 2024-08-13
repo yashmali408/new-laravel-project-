@@ -13,6 +13,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\SystemInfoController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\WishlistController;
 
 
 use App\Http\Middleware\AdminAuth;
@@ -34,9 +35,7 @@ Route::prefix('/shop')->group(function () {
     Route::get('/shop',function(){
         return view('shop/shop'); //shop.blade.php
     });
-    Route::get('/wishlist',function(){
-        return view('shop/wishlist'); //shop.blade.php
-    });
+    Route::resource('wishlist', WishlistController::class);
 
     Route::get('/single-product-fullwidth',function(){
         return view('shop/single-product-fullwidth'); //shop.blade.php

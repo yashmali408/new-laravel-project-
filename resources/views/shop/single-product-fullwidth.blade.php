@@ -84,7 +84,11 @@ div.zoomContainer{
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
-                            <a href="#" class="text-gray-6 font-size-13 mr-2"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                            <form method="POST" action="{{route('wishlist.store')}}">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{$product->id}}" />
+                                <button type="submit" class="btn text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                            </form>
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                         </div>
 
@@ -668,7 +672,11 @@ div.zoomContainer{
                             <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                    <form method="GET" action="{{route('wishlist.store')}}">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{$product->id}}" />
+                                        <button type="submit" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -696,7 +704,11 @@ div.zoomContainer{
                             <div class="product-item__footer">
                                 <div class="border-top pt-2 flex-center-between flex-wrap">
                                     <a href="../shop/compare.html" class="text-gray-6 font-size-13"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
-                                    <a href="../shop/wishlist.html" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</a>
+                                    <form method="GET" action="{{route('wishlist.store')}}">
+                                        @csrf
+                                        <input type="hidden" name="product_id" value="{{$product->id}}" />
+                                        <button type="submit" class="text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
