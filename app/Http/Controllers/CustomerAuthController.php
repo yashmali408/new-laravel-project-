@@ -56,6 +56,7 @@ class CustomerAuthController extends Controller
 
     // public function method(Formal Argument)
     public function login(Request $request){
+        //dd('OKOKOKOk');
         //dd($request->all());
         /* $request->validate([
             'email'=>'required|email:users',
@@ -69,6 +70,7 @@ class CustomerAuthController extends Controller
             if (Auth::attempt($credentials)) {
                 session(['firstname' => $user->name]);//Associative array ['key'=>'value']
                 session(['lastname' => $user->surname]);
+                //
                 return back()->with('success','You have Logged in successfully.');
             }else{
                 return back()->with('failed','Invalid Credentials.');

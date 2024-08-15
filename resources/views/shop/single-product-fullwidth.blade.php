@@ -84,10 +84,10 @@ div.zoomContainer{
                             </div>
                         </div>
                         <div class="flex-horizontal-center flex-wrap mb-4">
-                            <form method="POST" action="{{route('wishlist.store')}}">
+                            <form class="wishlistForm" method="POST" action="{{route('wishlist.store')}}">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{$product->id}}" />
-                                <button type="submit" class="btn text-gray-6 font-size-13"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
+                                <button type="submit" class="btn text-gray-6 font-size-13 wishlistButton"><i class="ec ec-favorites mr-1 font-size-15"></i> Wishlist</button>
                             </form>
                             <a href="#" class="text-gray-6 font-size-13 ml-2"><i class="ec ec-compare mr-1 font-size-15"></i> Compare</a>
                         </div>
