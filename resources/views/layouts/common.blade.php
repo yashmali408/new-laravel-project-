@@ -710,6 +710,7 @@
         <script src="/assets/js/zoom/panZoom.js"></script>
         <script src="/assets/js/zoom/ui-carousel.js"></script>
         <script src="/assets/js/zoom/zoom.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
         <script src="/assets/vendor/popper.js/dist/umd/popper.min.js"></script>
@@ -868,8 +869,23 @@
 
         </script>
         <script>
-            document.querySelector('.wishlistButton').addEventListener('click', function (e) {
-                //e.preventDefault(); //Stop reloading the page
+            var toastMixin = Swal.mixin({
+                toast: true,
+                icon: 'success',
+                title: 'General Title',
+                animation: false,
+                position: 'top-right',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+            document.querySelector('.second.wishlistButton').addEventListener('click', function (e) {
+                e.preventDefault(); //Stop reloading the page
+                
                 console.log("Wishlish clicked");
                 //PHP code
                 //I want to execute php code inside javscirpt
@@ -905,6 +921,9 @@
                 @endif
 
             });
+        </script>
+        <script>
+
         </script>
     </body>
 </html>

@@ -62,6 +62,16 @@ class WishlistController extends Controller
         $data = $request->only('product_id');
         $data['customer_id']=Auth::id();
         //dd($data);
+        //We have check if the product is already added to the store
+        // Check if the product is already added to the wishlist
+        $exists = Wishlist::where('product_id', $data['product_id'])
+        ->where('customer_id', $data['customer_id'])
+        ->exists();
+
+        if ($exists) {
+            return back()->with('info', 'Product is already in your wishlist.');
+        }
+
         Wishlist::create($data);
         return back()->with('success','Product added to wishlist successfully');
 
