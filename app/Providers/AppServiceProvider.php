@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\SystemInfo;
+use App\Models\Cart;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -23,7 +26,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //How to share data globaly on all view
-    
+        $userId=7;
+        
         $app_name = SystemInfo::where('meta_name', 'app_name')->first()->meta_value;
         $app_description = SystemInfo::where('meta_name', 'app_description')->first()->meta_value;
         $app_shortcut_icon_url = SystemInfo::where('meta_name', 'app_shortcut_icon_url')->first()->meta_value;
@@ -40,6 +44,25 @@ class AppServiceProvider extends ServiceProvider
         $social_x_url = SystemInfo::where('meta_name', 'social_x_url')->first()->meta_value;
         $social_github_url = SystemInfo::where('meta_name', 'social_github_url')->first()->meta_value;
 
+        $cartDatas2 = DB::table('carts')
+            ->join('users', 'users.id', '=', 'carts.customer_id')
+            ->join('products', 'products.id', '=', 'carts.product_id')
+            ->where('users.id', $userId) 
+            ->get();
+
+        $cartDatas = [];
+
+        foreach ($cartDatas2 as $index => $item) {
+            $cartDatas["cartItem" . ($index + 1)] = [
+                'total' => $item->sell_price * $item->qty,
+            ];
+        }
+
+        //dd($cartDatas);
+        $grandTotal = collect($cartDatas)->sum('total');
+
+        $cartCount = Cart::where('customer_id', $userId)->count();
+        //dd(Auth::id());
         $data = [
             'app_name' => $app_name,
             'app_description' => $app_description,
@@ -54,7 +77,13 @@ class AppServiceProvider extends ServiceProvider
             'social_fb_url' => $social_fb_url,
             'social_google_url' => $social_google_url,
             'social_x_url' => $social_x_url,
-            'social_github_url' => $social_github_url
+            'social_github_url' => $social_github_url,
+
+
+            'cart_info' => [
+                'cart_count' => $cartCount,
+                'cart_total' => $grandTotal,
+            ],
         ]; 
         //ClassName::method(aa1,aa2)
         View::share('appData', $data);
