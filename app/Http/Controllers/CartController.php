@@ -18,13 +18,19 @@ class CartController extends Controller
         $cartDatas2 = DB::table('carts')
             ->join('users', 'users.id', '=', 'carts.customer_id')
             ->join('products', 'products.id', '=', 'carts.product_id')
-            ->where('users.id', Auth::id()) 
+            ->where('users.id', Auth::id())
+            ->select(
+                'products.id as product_id',
+                'products.*', // Select all columns from the products table
+                'carts.*' // Select all columns from the carts table
+            ) 
             ->get();
 
         $cartDatas = [];
 
         foreach ($cartDatas2 as $index => $item) {
             $cartDatas["cartItem" . ($index + 1)] = [
+                'product_id' => $item->product_id,
                 'product_name' => $item->product_name,
                 'unit_price' => $item->sell_price,
                 'qty' => $item->qty,
@@ -88,6 +94,12 @@ class CartController extends Controller
      */
     public function destroy(Cart $cart)
     {
-        //
+        //var_dump($cart->id);
+        //dd('Cart Destroy');
+         // Delete the cart item
+        $cart->delete();
+
+        // Return back to the same page with a success message (optional)
+        return redirect()->back()->with('success', 'Item removed from cart.');
     }
 }

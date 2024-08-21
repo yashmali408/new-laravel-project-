@@ -26,7 +26,11 @@
                 <h1 class="text-center">Cart</h1>
             </div>
             <div class="mb-10 cart-table">
-                <form class="mb-4" action="#" method="post">
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                     <table class="table" cellspacing="0">
                         <thead>
                             <tr>
@@ -39,10 +43,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($cartDatas as $cartData)
+                            @foreach($cartDatas as $cartData)                </pre>
                             <tr class="">
                                 <td class="text-center">
-                                    <a href="#" class="text-gray-32 font-size-26">×</a>
+                                    <form method="POST" action="/shop/cart/{{$cartData['product_id']}}" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn text-gray-32 font-size-26">×</button>
+                                    </form>
                                 </td>
                                 <td class="d-none d-md-table-cell">
                                     <a href="#"><img class="img-fluid max-width-100 p-1 border border-color-1" src="/assets/img/300X300/img6.jpg" alt="Image Description"></a>
@@ -84,7 +92,6 @@
                             @endforeach                       
                         </tbody>
                     </table>
-                </form>
             </div>
             <div class="mb-8 cart-total">
                 <div class="row">
