@@ -15,6 +15,7 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CouponController;
 
 
 use App\Http\Middleware\AdminAuth;
@@ -43,6 +44,10 @@ Route::prefix('/shop')->group(function () {
     });
 
     Route::resource('cart',CartController::class);
+
+    Route::resource('coupons',CouponController::class);
+
+    Route::post('coupons/apply',[CouponController::class, 'applyCoupon'])->name('coupons.apply');
     
     Route::get('/my-account',function(){
         return view('shop/my-account'); //my-account.blade.php

@@ -89,11 +89,42 @@
                                     <span class="">${{$cartData['total']}}</span>
                                 </td>
                             </tr> 
-                            @endforeach                       
+                            @endforeach
+                            <tr>
+                                <td colspan="6" class="border-top space-top-2 justify-content-center">
+                                    <div class="pt-md-3">
+                                        <div class="d-block d-md-flex flex-center-between">
+                                            <div class="mb-3 mb-md-0 w-xl-40">
+                                                <!-- Apply coupon Form -->
+                                                
+                                                    <label class="sr-only" for="subscribeSrEmailExample1">Coupon code</label>
+                                                    <div class="input-group">
+                                                        <form method="POST" action="{{route('coupons.apply')}}">
+                                                            @csrf
+                                                            @method('POST')
+                                                            <input type="text" class="form-control" name="coupon_code" id="coupon_code" placeholder="Coupon code" aria-label="Coupon code" aria-describedby="subscribeButtonExample2" required="">
+                                                            <div class="input-group-append">
+                                                                <button class="btn btn-block btn-dark px-4" type="submit" id="subscribeButtonExample2"><i class="fas fa-tags d-md-none"></i><span class="d-none d-md-inline">Apply coupon</span></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                
+                                                <!-- End Apply coupon Form -->
+                                            </div>
+                                            <div class="d-md-flex">
+                                                <button type="button" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
+                                                <a href="../shop/checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>                       
                         </tbody>
                     </table>
             </div>
+
             <div class="mb-8 cart-total">
+ 
                 <div class="row">
                     <div class="col-xl-5 col-lg-6 offset-lg-6 offset-xl-7 col-md-8 offset-md-4">
                         <div class="border-bottom border-color-1 mb-3">

@@ -43,7 +43,7 @@ class CartComposer
 
         $view->with('cart_info', [
                                     'cart_count' => $cartCount,
-                                    'cart_total' =>  $grandTotal,
+                                    'cart_total' =>  $grandTotal-400,
                                 ]);
     }
 }
