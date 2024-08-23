@@ -73,12 +73,47 @@ class CouponController extends Controller
         //Set this coupon code in session
         $couponCode = $request->coupon_code;
 
+        //dd($couponCode);
         //Check with coupon table if the coupon is valid or not
+        //Check if you code is available in coupon table
+        $couponData = Coupon::where('coupon_code', $couponCode)
+                             ->first();
         
+        //dd($couponData);
+        if ($couponData === null) {
+            dd('Coupon is invalid');
+            // Coupon code is not found
+            return redirect()->back()->with('error', 'Coupon code is invalid.');
+        }
+    
+        // Get the current date and time
+        $now = now();
+        echo '<pre>';
+        echo $now->format('Y-m-d H:i:s'); // Format the date and time
+        echo '<pre>';
+        $now2 = $now->format('Y-m-d H:i:s');
+        var_dump($couponData->coupon_expire_start_date);
+        var_dump($couponData->coupon_expire_end_date);
+        // Check if the coupon is within the valid date range
+        if ($couponData->coupon_expire_start_date > $now2 || $couponData->coupon_expire_end_date < $now2) {
+            dd('Coupon is invalid1');
+            // Coupon is not within the valid date range
+            return redirect()->back()->with('error', 'Coupon code has expired.');
+        }
+        // Check if the coupon usage limit is exceeded
+        if ($couponData->usage_limit >= $couponData->used_count) {
+            var_dump($couponData->usage_limit);
+            var_dump($couponData->used_count);
+            dd('Coupon is invalid2');
+            // Coupon usage limit has been reached
+            return redirect()->back()->with('error', 'Coupon usage limit has been reached.');
+        }
 
-         // Set the coupon code in the session
-        //session()->put('applied_coupon', $couponCode);
-
+        dd('Coupon is valid');
+        // Coupon is valid and within the date range
+        // Set the coupon code in the session
+        session()->put('applied_coupon', $couponCode);
+    
         // Optionally, you can return a response or redirect
         return redirect()->back()->with('success', 'Coupon code applied successfully!');
 
