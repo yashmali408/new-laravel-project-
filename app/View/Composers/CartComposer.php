@@ -38,12 +38,38 @@ class CartComposer
 
         //dd($cartDatas);
         $grandTotal = collect($cartDatas)->sum('total');
+        $couponCode='';
+        $couponValue='';
+        $couponType='';
+        $discount=0;
+        if (session()->has('coupon_code')) {
+
+            
+            // Retrieve the session values
+            $couponCode = session()->get('coupon_code');
+            $couponValue = session()->get('coupon_value');
+            $couponType = session()->get('coupon_type');
+
+            // Calculate the discount based on the coupon type
+            // Example: If coupon type is 'percentage' or 'fixed'
+            if ($couponType == 'percentage') {
+                $discount = ($grandTotal * $couponValue) / 100;
+            } elseif ($couponType == 'fixed') {
+                $discount = $couponValue;
+            } else {
+                $discount = 0;
+            }
+
+            $grandTotal = $grandTotal - $discount;
+        }
 
         $cartCount = Cart::where('customer_id', Auth::id())->count();
 
         $view->with('cart_info', [
                                     'cart_count' => $cartCount,
-                                    'cart_total' =>  $grandTotal-400,
+                                    'cart_total' =>  $grandTotal,
+                                    'discountType' =>  $couponType ,
+                                    'discountValue' =>  $discount,
                                 ]);
     }
 }

@@ -136,6 +136,18 @@
                                     <th>Subtotal</th>
                                     <td data-title="Subtotal"><span class="amount">${{$grandTotal}}</span></td>
                                 </tr>
+                                
+                                @php
+                                if($cart_info['discountValue']){
+                                    @endphp
+                                    <tr>
+                                        <th>Discount <?php echo  $cart_info['discountType']; ?></th>
+                                        <td> -  <?php echo  $cart_info['discountValue']; ?><td>
+                                    </tr>
+                                    @php
+                                }
+                                @endphp
+                                
                                 <tr class="shipping">
                                     <th>Shipping</th>
                                     <td data-title="Shipping">
@@ -443,9 +455,10 @@
                                         </div>
                                     </td>
                                 </tr>
+                               
                                 <tr class="order-total">
                                     <th>Total</th>
-                                    <td data-title="Total"><strong><span class="amount">${{$grandTotal}}</span></strong></td>
+                                    <td data-title="Total"><strong><span class="amount">${{$cart_info['cart_total']}}</span></strong></td>
                                 </tr>
                             </tbody>
                         </table>
