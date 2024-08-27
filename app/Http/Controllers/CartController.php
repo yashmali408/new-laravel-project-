@@ -123,15 +123,16 @@ class CartController extends Controller
         return redirect()->back()->with('success', 'Item removed from cart.');
     }
 
-    public function destroyAll(Cart $cart)
+    public function destroyAll(Request $request)
     {
-        dd('Cart DestroyAll');
-        //var_dump($cart->id);
-        //dd('Cart Destroy');
-         // Delete the cart item
-        $cart->delete();
+        //dd('Cart DestroyAll');
+         // Get the currently authenticated user's ID
+        $customerId = Auth::id();
+
+        // Delete all cart items for the authenticated user
+        Cart::where('customer_id', $customerId)->delete();
 
         // Return back to the same page with a success message (optional)
-        return redirect()->back()->with('success', 'Item removed from cart.');
+        return redirect()->back()->with('success', 'Cart Emptied Succesffull');
     }
 }

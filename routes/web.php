@@ -29,6 +29,8 @@ Route::get('/chat/chat', [ChatController::class, 'chat']);
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 
+Route::delete('cart/destroy',[CartController::class, 'destroyAll'])->name('cart.destroyAll');
+
 
 Route::prefix('/shop')->group(function () {
     
@@ -44,8 +46,6 @@ Route::prefix('/shop')->group(function () {
     });
 
     Route::resource('cart',CartController::class);
-
-    Route::delete('cart/destroy',[CartController::class, 'destroyAll'])->name('cart.destroyAll');
 
     Route::resource('coupons',CouponController::class);
 
