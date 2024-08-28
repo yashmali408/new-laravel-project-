@@ -106,7 +106,45 @@ class CartController extends Controller
      */
     public function update(Request $request, Cart $cart)
     {
+       // Debugging: Dump all request data
+        // dd($request->all());
+        
+        // Parse the product IDs and quantities from the request
+        $productIds = json_decode($request->input('productIds'), true);
+        $productIdsQty = json_decode($request->input('productIdsQty'), true);
+        
+        // Ensure both arrays are of the same length
+        if (count($productIds) !== count($productIdsQty)) {
+            return response()->json(['error' => 'Mismatch between product IDs and quantities'], 400);
+        }
+
+        // Get the current user ID
+        $userId = Auth::id();
+         // Debugging: Log product IDs and quantities
+        //var_dump($productIds);
+        //var_dump($productIdsQty);
+        //dd('OK');
+
+        // Iterate over each product ID and update the corresponding cart item
+        foreach ($productIds as $index => $productId) {
+            // Find the cart item for the current product and user
+            $cartItem = Cart::where('customer_id', $userId)
+                            ->where('product_id', $productId)
+                            ->first();
+
+            if ($cartItem) {
+                // Update the quantity if the cart item exists
+                $cartItem->qty = $productIdsQty[$index];
+                $cartItem->save();
+            } else {
+                // Optionally handle the case where the cart item does not exist
+                // For example, you could create a new cart item if needed
+            }
+        }
+
         //
+        // Return back with a success message
+        return redirect()->back()->with('success', 'Cart updated successfully');
     }
 
     /**

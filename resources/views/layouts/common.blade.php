@@ -933,7 +933,48 @@
             });
         </script>
         <script>
+            // Function to update hidden input field with quantities
+            function updateHiddenQuantities() {
+                console.log('Hello');
+                const productIdsQty = [];
+                document.querySelectorAll('.js-result').forEach(input => {
+                    const id = input.id.split('-')[1];
+                    console.log('id >> ',id);
+                    console.log('input.value >> ',input.value);
+                    const quantity = input.value;
+                    productIdsQty.push(quantity);
+                    console.log('productIdsQty >> ',productIdsQty);
+                });
+                document.getElementById('productIdsQty').value = JSON.stringify(productIdsQty);
+            }
+            document.querySelectorAll('.js-minus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const input = document.getElementById(`qty-${id}`);
+                    console.log('input>>',input );
+                    console.log('input.value>>',input.value );
+                    var value = input.value;
+                    
+                    if (value > 1) {
+                        input.value = value - 1;
+                        updateHiddenQuantities();
+                    }
+                });
+            });
 
+            document.querySelectorAll('.js-plus').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    console.log('id>>',id );
+                    const input = document.getElementById(`qty-${id}`);
+                    console.log('input>>',input );
+                    var value = parseInt(input.value);
+                    input.value = value + 1;
+                    updateHiddenQuantities();
+                });
+            });
+            // Initial update of hidden input field
+            updateHiddenQuantities();
         </script>
     </body>
 </html>

@@ -30,6 +30,7 @@ Route::get('/chat/chat', [ChatController::class, 'chat']);
 Route::post('/login',[AuthController::class,'login'])->name('login');
 
 Route::delete('cart/destroy',[CartController::class, 'destroyAll'])->name('cart.destroyAll');
+Route::put('cart/update2',[CartController::class, 'update'])->name('cart.update2');
 
 
 Route::prefix('/shop')->group(function () {
