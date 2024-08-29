@@ -135,7 +135,7 @@
                                                 <input type="hidden" id="productIdsQty" name="productIdsQty" value="{{ json_encode($productIdsQty) }}" />  
                                                 <button type="submit" class="btn btn-soft-secondary mb-3 mb-md-0 font-weight-normal px-5 px-md-4 px-lg-5 w-100 w-md-auto">Update cart</button>
                                             </form>
-                                            <a href="../shop/checkout.html" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
+                                            <a href="/shop/checkout" class="btn btn-primary-dark-w ml-md-2 px-5 px-md-4 px-lg-5 w-100 w-md-auto d-none d-md-inline-block">Proceed to checkout</a>
                                         </div>
                                     </div>
                                 </div>

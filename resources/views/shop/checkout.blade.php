@@ -28,9 +28,12 @@
         <div id="shopCartAccordion" class="accordion rounded mb-5">
             <!-- Card -->
             <div class="card border-0">
+                @guest
                 <div id="shopCartHeadingOne" class="alert alert-primary mb-0" role="alert">
                     Returning customer? <a href="#" class="alert-link" data-toggle="collapse" data-target="#shopCartOne" aria-expanded="false" aria-controls="shopCartOne">Click here to login</a>
                 </div>
+                @endguest
+                
                 <div id="shopCartOne" class="collapse border border-top-0" aria-labelledby="shopCartHeadingOne" data-parent="#shopCartAccordion" style="">
                     <!-- Form -->
                     <form class="js-validate p-5">
@@ -600,7 +603,7 @@
                                 </div>
                                 <!-- End Input -->
                             </div>
-
+                            
                             <div class="col-md-8">
                                 <!-- Input -->
                                 <div class="js-form-message mb-6">
@@ -608,7 +611,7 @@
                                         Street address
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control" name="streetAddress" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" class="form-control" name="streetAddress" value="{{$street_address}}" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -619,7 +622,7 @@
                                     <label class="form-label">
                                         Apt, suite, etc.
                                     </label>
-                                    <input type="text" class="form-control" placeholder="YC7B 3UT" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" name="house_no" value="{{$house_no}}" class="form-control" placeholder="YC7B 3UT" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>

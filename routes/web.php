@@ -16,6 +16,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\WishlistController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CouponController;
+use App\Http\Controllers\CheckoutController;
 
 
 use App\Http\Middleware\AdminAuth;
@@ -65,9 +66,7 @@ Route::prefix('/shop')->group(function () {
         return view('shop/compare'); //compare.blade.php
     });
     
-    Route::get('/checkout',function(){
-        return view('shop/checkout'); //checkout.blade.php
-    });
+    Route::resource('/checkout',CheckoutController::class);
 });
 
 Route::get('/about',function(){

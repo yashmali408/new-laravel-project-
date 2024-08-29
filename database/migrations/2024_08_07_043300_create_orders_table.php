@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('qty')->nullable(false);
             $table->decimal('purchased_price', 8, 2)->nullable(false);
             $table->enum('payment_mode', ['CC', 'DC', 'UPI', 'COD'])->default('COD')->nullable(false);
+            $table->text('order_note'); //65K
             $table->timestamps();
         });
     }
