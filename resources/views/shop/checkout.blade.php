@@ -125,7 +125,8 @@
             <!-- End Card -->
         </div>
         <!-- End Accordion -->
-        <form class="js-validate" novalidate="novalidate">
+        <form action="{{route('checkout.store')}}" method="POST" style="border:1px dashed red;" class="js-validate" novalidate="novalidate">
+            @csrf
             <div class="row">
                 <div class="col-lg-5 order-lg-2 mb-7 mb-lg-0">
                     <div class="pl-lg-3 ">
@@ -147,27 +148,40 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr class="cart_item">
-                                            <td>Ultra Wireless S50 Headphones S50 with Bluetooth&nbsp;<strong class="product-quantity">× 1</strong></td>
-                                            <td>$1,100.00</td>
-                                        </tr>
-                                        <tr class="cart_item">
-                                            <td>Widescreen NX Mini F1 SMART NX&nbsp;<strong class="product-quantity">× 1</strong></td>
-                                            <td>$685.00</td>
-                                        </tr>
+                                        @foreach($cartDatas as $cartData)
+                                            @php
+                                                // Collect product IDs and quantities
+                                                $productIds[] = $cartData['product_id'];
+                                                $productIdsQty[] = $cartData['qty'];
+                                            @endphp
+                                            <tr class="cart_item">
+                                                <td>{{$cartData['product_name']}}&nbsp;<strong class="product-quantity">× {{$cartData['qty']}}</strong></td>
+                                                <td>${{$cartData['total']}}</td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th>Subtotal</th>
-                                            <td>$1,785.00</td>
+                                            <td>${{$grandTotal}}</td>
                                         </tr>
+                                        @php
+                                        if($cart_info['discountValue']){
+                                            @endphp
+                                            <tr>
+                                                <th>Discount <?php echo  $cart_info['discountType']; ?></th>
+                                                <td> -  <?php echo  $cart_info['discountValue']; ?><td>
+                                            </tr>
+                                            @php
+                                        }
+                                        @endphp
                                         <tr>
                                             <th>Shipping</th>
                                             <td>Flat rate $300.00</td>
                                         </tr>
                                         <tr>
                                             <th>Total</th>
-                                            <td><strong>$2,085.00</strong></td>
+                                            <td><strong>${{$cart_info['cart_total']}}</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -179,7 +193,7 @@
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
                                             <div class="p-3" id="basicsHeadingOne">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="stylishRadio1" name="stylishRadio" checked>
+                                                    <input type="radio" class="custom-control-input" id="stylishRadio1" name="paymentMode" value="BANK_TRANSFER" checked>
                                                     <label class="custom-control-label form-label" for="stylishRadio1"
                                                         data-toggle="collapse"
                                                         data-target="#basicsCollapseOnee"
@@ -203,7 +217,7 @@
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
                                             <div class="p-3" id="basicsHeadingTwo">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="secondStylishRadio1" name="stylishRadio">
+                                                    <input type="radio" class="custom-control-input" id="secondStylishRadio1" name="paymentMode">
                                                     <label class="custom-control-label form-label" for="secondStylishRadio1"
                                                         data-toggle="collapse"
                                                         data-target="#basicsCollapseTwo"
@@ -227,7 +241,7 @@
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
                                             <div class="p-3" id="basicsHeadingThree">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="thirdstylishRadio1" name="stylishRadio">
+                                                    <input type="radio" class="custom-control-input" id="thirdstylishRadio1" name="paymentMode" value="COD">
                                                     <label class="custom-control-label form-label" for="thirdstylishRadio1"
                                                         data-toggle="collapse"
                                                         data-target="#basicsCollapseThree"
@@ -251,7 +265,7 @@
                                         <div class="border-bottom border-color-1 border-dotted-bottom">
                                             <div class="p-3" id="basicsHeadingFour">
                                                 <div class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input" id="FourstylishRadio1" name="stylishRadio">
+                                                    <input type="radio" class="custom-control-input" id="FourstylishRadio1" name="paymentMode" value="PAYPAL">
                                                     <label class="custom-control-label form-label" for="FourstylishRadio1"
                                                         data-toggle="collapse"
                                                         data-target="#basicsCollapseFour"
@@ -309,7 +323,7 @@
                                         First name
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control" name="firstName" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                    <input required type="text" class="form-control" name="firstName" placeholder="Jack" aria-label="Jack" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -346,7 +360,7 @@
                                         Country
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                    <select name="country" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
                                         data-live-search="true"
                                         data-style="form-control border-color-1 font-weight-normal">
                                         <option value="">Select country</option>
@@ -949,12 +963,14 @@
                         <div id="shopCartAccordion2" class="accordion rounded mb-6">
                             <!-- Card -->
                             <div class="card border-0">
+                                @guest
                                 <div id="shopCartHeadingThree" class="custom-control custom-checkbox d-flex align-items-center">
                                     <input type="checkbox" class="custom-control-input" id="createAnaccount" name="createAnaccount" >
                                     <label class="custom-control-label form-label" for="createAnaccount" data-toggle="collapse" data-target="#shopCartThree" aria-expanded="false" aria-controls="shopCartThree">
                                         Create an account?
                                     </label>
                                 </div>
+                                @endguest
                                 <div id="shopCartThree" class="collapse" aria-labelledby="shopCartHeadingThree" data-parent="#shopCartAccordion2" style="">
                                     <!-- Form Group -->
                                     <div class="js-form-message form-group py-5">
@@ -1645,7 +1661,7 @@
                             </label>
 
                             <div class="input-group">
-                                <textarea class="form-control p-5" rows="4" name="text" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                <textarea class="form-control p-5" rows="4" name="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
                             </div>
                         </div>
                         <!-- End Input -->

@@ -67,7 +67,9 @@ Route::prefix('/shop')->group(function () {
     });
     
     Route::resource('/checkout',CheckoutController::class);
+    
 });
+Route::get('/checkout/success',[CheckoutController::class, 'success'])->name('checkout.success');
 
 Route::get('/about',function(){
     return view('about'); //about.blade.php
