@@ -19,7 +19,7 @@
         </div>
     </div>
     <!-- End breadcrumb -->
-
+    @if($cart_info['cart_count'] != 0)
     <div class="container">
         <div class="mb-5">
             <h1 class="text-center">Checkout</h1>
@@ -625,7 +625,7 @@
                                         Street address
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" class="form-control" name="streetAddress" value="{{$street_address}}" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input type="text" class="form-control" name="street_address" value="{{$street_address}}" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -950,7 +950,7 @@
                                     <label class="form-label">
                                         Phone
                                     </label>
-                                    <input type="text" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                    <input name="phone" type="text" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                                 </div>
                                 <!-- End Input -->
                             </div>
@@ -999,8 +999,8 @@
                             <!-- Card -->
                             <div class="card border-0">
                                 <div id="shopCartHeadingFour" class="custom-control custom-checkbox d-flex align-items-center">
-                                    <input type="checkbox" class="custom-control-input" id="shippingdiffrentAddress" name="shippingdiffrentAddress" >
-                                    <label class="custom-control-label form-label" for="shippingdiffrentAddress" data-toggle="collapse" data-target="#shopCartfour" aria-expanded="false" aria-controls="shopCartfour">
+                                    <input type="checkbox" class="custom-control-input" id="shipToDifferentAddress" name="shipToDifferentAddress" value="true">
+                                    <label class="custom-control-label form-label" for="shipToDifferentAddress" data-toggle="collapse" data-target="#shopCartfour" aria-expanded="false" aria-controls="shopCartfour">
                                         Ship to a different address?
                                     </label>
                                 </div>
@@ -1014,7 +1014,7 @@
                                                     First name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" name="firstName" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                                <input type="text" class="form-control" name="stda_firstName" placeholder="Jack" aria-label="Jack" required="" data-msg="Please enter your frist name." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1026,7 +1026,7 @@
                                                     Last name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" name="lastName" placeholder="Wayley" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input type="text" class="form-control" name="stda_lastName" placeholder="Wayley" aria-label="Wayley" required="" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1039,7 +1039,7 @@
                                                 <label class="form-label">
                                                     Company name (optional)
                                                 </label>
-                                                <input type="text" class="form-control" name="companyName" placeholder="Company Name" aria-label="Company Name" data-msg="Please enter a company name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input type="text" class="form-control" name="stda_companyName" placeholder="Company Name" aria-label="Company Name" data-msg="Please enter a company name." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1051,7 +1051,7 @@
                                                     Country
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                <select name="stda_country" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select country." data-error-class="u-has-error" data-success-class="u-has-success"
                                                     data-live-search="true"
                                                     data-style="form-control border-color-1 font-weight-normal">
                                                     <option value="">Select country</option>
@@ -1316,7 +1316,7 @@
                                                     Street address
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" name="streetAddress" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input type="text" class="form-control" name="stda_street_address" placeholder="470 Lucy Forks" aria-label="470 Lucy Forks" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1327,7 +1327,7 @@
                                                 <label class="form-label">
                                                     Apt, suite, etc.
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="YC7B 3UT" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input name="stda_house_no" type="text" class="form-control" placeholder="YC7B 3UT" aria-label="YC7B 3UT" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1339,7 +1339,7 @@
                                                     City
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" name="cityAddress" placeholder="London" aria-label="London" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
+                                                <input type="text" class="form-control" name="stda_cityAddress" placeholder="London" aria-label="London" required="" data-msg="Please enter a valid address." data-error-class="u-has-error" data-success-class="u-has-success" autocomplete="off">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1351,7 +1351,7 @@
                                                     Postcode/Zip
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control" name="postcode" placeholder="99999" aria-label="99999" required="" data-msg="Please enter a postcode or zip code." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input type="text" class="form-control" name="stda_postcode" placeholder="99999" aria-label="99999" required="" data-msg="Please enter a postcode or zip code." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1365,7 +1365,7 @@
                                                     State
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <select class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select state." data-error-class="u-has-error" data-success-class="u-has-success"
+                                                <select name="stda_state" class="form-control js-select selectpicker dropdown-select" required="" data-msg="Please select state." data-error-class="u-has-error" data-success-class="u-has-success"
                                                     data-live-search="true"
                                                     data-style="form-control border-color-1 font-weight-normal">
                                                     <option value="">Select state</option>
@@ -1630,7 +1630,7 @@
                                                     Email address
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="email" class="form-control" name="emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input type="email" class="form-control" name="stda_emailAddress" placeholder="jackwayley@gmail.com" aria-label="jackwayley@gmail.com" required="" data-msg="Please enter a valid email address." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1641,7 +1641,7 @@
                                                 <label class="form-label">
                                                     Phone
                                                 </label>
-                                                <input type="text" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
+                                                <input name="stda_phone" type="text" class="form-control" placeholder="+1 (062) 109-9222" aria-label="+1 (062) 109-9222" data-msg="Please enter your last name." data-error-class="u-has-error" data-success-class="u-has-success">
                                             </div>
                                             <!-- End Input -->
                                         </div>
@@ -1670,6 +1670,9 @@
             </div>
         </form>
     </div>
+    @else
+    <h1 class="display-5 text-center"><a href="/">Plz add prodcut to checkout</a> </h1>
+    @endif
 </main>
 <!-- ========== END MAIN CONTENT ========== -->
 @endsection

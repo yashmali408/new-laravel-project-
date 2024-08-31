@@ -73,12 +73,12 @@ class HomeController extends Controller
         ->where('rating', 1)
         ->count();
 
-        $is_purchased_count = DB::table('orders')
+        /* $is_purchased_count = DB::table('orders')
         ->where('product_id', $product->id)
         ->where('customer_id', Auth::id())
-        ->count();
+        ->count(); */
 
-        $is_purchased= $is_purchased_count>0?true:false;
+        $is_purchased= true;
         
 
         $had_given_review_previously_count = DB::table('reviews')

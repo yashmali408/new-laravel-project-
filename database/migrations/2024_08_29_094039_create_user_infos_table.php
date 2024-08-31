@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('meta_key');
-            $table->string('meta_value');
+            $table->string('meta_value')->nullable();
             $table->timestamps();
             //Combined Constraint on two column 'attribute_id', 'value'
             $table->unique(['user_id', 'meta_key'], 'unique_user_id_meta_key');

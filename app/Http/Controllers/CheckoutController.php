@@ -68,9 +68,9 @@ class CheckoutController extends Controller
             'cartDatas'=>$cartDatas,
             'grandTotal'=>$grandTotal,
             'userInfo' => $userInfo,
-            'country' => $country->meta_value,
-            'house_no' => $house_no->meta_value?$house_no->meta_value:'',
-            'street_address'=> $street_address->meta_value?$street_address->meta_value:''
+            'country' => '',
+            'house_no' => '',
+            'street_address'=> ''
         ]); //checkout.blade.php
     }
 
@@ -89,15 +89,59 @@ class CheckoutController extends Controller
     {
         //
         //dd($request->all());
+        // Get the current user's ID
+        $userId = auth()->user()->id;
 
+        // Iterate over the request data and store in user_infos
+       
         //Empty the cart if Payment MOD is COD
         if($request->paymentMode == 'COD'){
             
+            foreach ($request->except('_token') as $key => $value) {
+
+                // Check if the meta_key already exists for the user
+                $exists = DB::table('user_infos')
+                    ->where('user_id', $userId)
+                    ->where('meta_key', $key)
+                    ->exists();
+
+                // If the key doesn't exist, insert it
+                if (!$exists) {
+                    DB::table('user_infos')->insert([
+                        'user_id' => $userId,
+                        'meta_key' => $key,
+                        'meta_value' => $value
+                    ]);
+                }
+            }
+            //Save the cart data in order table
+            // Prepare the order details (you may need to customize this based on your application's structure)
+            $orderDetails = Cart::where('customer_id', $userId)->get(); // Assuming Cart holds the order details
+            $orderDetailsSerialized = json_encode($orderDetails); // Convert to JSON or any preferred format
+
+            // Generate a unique order number
+            $orderNumber = $this->generateOrderNumber();
+
+            // Insert into the orders table
+            $order = \DB::table('orders')->insertGetId([
+                'customer_id' => $userId,
+                'order_no' => $orderNumber,
+                'order_details' => $orderDetailsSerialized,
+                'payment_mode' => $request->paymentMode,
+                'order_note' => $request->order_note, // Ensure this comes from the request
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
             $cart = Cart::where('customer_id', auth()->user()->id)->delete();
         }
+        // Destroy coupon session data
+        session()->forget('coupon_code');
+        session()->forget('coupon_value');
+        session()->forget('coupon_type');
         return redirect('checkout/success');
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -132,5 +176,20 @@ class CheckoutController extends Controller
 
     public function success(){
         return view('shop.success');
+    }
+    /**
+     * Generate a unique order number.
+     *
+     * @return string
+     */
+    protected function generateOrderNumber()
+    {
+        // Prefix for the order number
+        $prefix = 'OD';
+
+        // Generate a unique number using the current timestamp and a random integer
+        $uniqueNumber = $prefix . mt_rand(100, 999) . time();
+
+        return $uniqueNumber;
     }
 }

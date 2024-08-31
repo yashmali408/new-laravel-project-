@@ -13,12 +13,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('order_no')->nullable(true);
             $table->integer('customer_id')->nullable(false);
-            $table->integer('product_id')->nullable(false);
-            $table->integer('qty')->nullable(false);
-            $table->decimal('purchased_price', 8, 2)->nullable(false);
+            $table->text('order_details')->nullable(false);
             $table->enum('payment_mode', ['CC', 'DC', 'UPI', 'COD'])->default('COD')->nullable(false);
-            $table->text('order_note'); //65K
+            $table->text('order_note')->nullable(true); //65K
             $table->timestamps();
         });
     }
