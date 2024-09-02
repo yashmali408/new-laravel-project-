@@ -17,6 +17,9 @@
             <div class="info">
                 <a href="#" class="d-block">{{ session('firstname') }} {{ session('lastname') }}</a>
             </div>
+            <div class="info text-white">
+                ({{ session('role') }})
+            </div>
         </div>
 
         <!-- SidebarSearch Form -->

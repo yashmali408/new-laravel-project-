@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6 a_tbdr">
-                    <h1 class="m-0">Admin Dashboard page</h1>
+                    <h1 class="m-0">CustomerCare Dashboard page</h1>
                 </div><!-- /.col -->
                 <!-- <div class="col-sm-6 a_tbdr text-right">
                     <a href="{{route('category.create')}}" class="btn btn-primary">Add New Category</a>

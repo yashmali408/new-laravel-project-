@@ -51,6 +51,9 @@
                                     if(session('firstname')){
                                         @endphp
                                         Welcome {{ session('firstname') }} {{ session('lastname') }}
+                                        <div>
+                                        
+                                        </div>
                                         <a href="/customer/logout">Logout</a>
                                         @php
                                     }else{
