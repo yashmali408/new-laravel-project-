@@ -89,6 +89,15 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">
+                        <i class="nav-icon far fa-message"></i>
+                        <p>
+                        Chat
+                        <span class="badge badge-info right">2</span>
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
 

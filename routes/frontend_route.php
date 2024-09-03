@@ -89,32 +89,7 @@ Route::get('/contact-v1',function(){
 
 
 
-/*   Backend/Admin Routes     */
 
-Route::prefix('admin')->middleware(AdminAuth::class)->group(function () { // /admin/login
-    //Route::get('/', [SystemInfoController::class,'login'])->withoutMiddleware([AdminAuth::class]);
-    Route::get('/login', [SystemInfoController::class,'login'])->withoutMiddleware([AdminAuth::class]);
-    
-    Route::get('/logout/logout',[AuthController::class,'logout']);
-    Route::get('/dashboard', [AuthController::class,'dashboard'])->name('admin_dashboard');
-    
-    
-    Route::resource('products', ProductController::class);
-    Route::resource('unit', UnitController::class);
-    Route::resource('category', CategoryController::class);
-    Route::resource('brands', BrandController::class);
-    
-    /* Only for practice */
-    
-    Route::get('/general', function () { // /admin/general
-        // Matches The "/admin/login" URL
-        return view('admin.general'); //general.blade.php
-    });
-});
-
-Route::prefix('customercare')->middleware(AdminAuth::class)->group(function () { // /admin/login
-    Route::get('/dashboard', [AuthController::class,'cc_dashboard'])->name('customercare_dashboard');
-});
 
 /*   Frontend Routes     */
 Route::prefix('customer')->group(function () { // /admin/login
