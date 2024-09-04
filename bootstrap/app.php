@@ -6,16 +6,11 @@ use Illuminate\Foundation\Configuration\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
-        web: __DIR__.'/../routes/frontend_route.php',
+        web: __DIR__.'/../routes/web.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //$middleware->append(YourMiddleware::class);
-
-        $middleware->validateCsrfTokens(except: [
-            'customer/login' // <-- exclude this route
-        ]);
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -45,9 +45,4 @@ Route::prefix('admin')->middleware(AdminAuth::class)->group(function () { // /ad
     });
 });
 
-Route::prefix('customercare')->middleware(AdminAuth::class)->group(function () { // /admin/login
-    Route::get('/dashboard', [AuthController::class,'cc_dashboard'])->name('customercare_dashboard');
-});
-
-
 ?>

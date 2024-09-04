@@ -90,7 +90,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="/customercare/chat" class="nav-link active">
                         <i class="nav-icon far fa-message"></i>
                         <p>
                         Chat
