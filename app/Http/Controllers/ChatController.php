@@ -82,4 +82,8 @@ class ChatController extends Controller
     public function cc_chat(){
         return view('customercare.cc_chat'); //cc_chat.blade.php
     }
+
+    public function send(Request $request){
+        dd($request->all());
+    }
 }

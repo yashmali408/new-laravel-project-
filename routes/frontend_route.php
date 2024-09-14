@@ -27,6 +27,7 @@ Route::get('/', [HomeController::class,'home'])->name('homeroute');
 // Route for product slugs
 Route::get('/{slug}', [HomeController::class, 'show'])->name('home.show');
 Route::get('/chat/chat', [ChatController::class, 'chat']);
+Route::post('/chat/send', [ChatController::class, 'send']);
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 

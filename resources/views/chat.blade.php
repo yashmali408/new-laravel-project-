@@ -32,10 +32,10 @@
                     <div class="mb-3">
                         <div class="row">
                             <div class="col-10">
-                                <input type="text" class="chatInput form-control-lg w-100 rounded-0 border border-0" id="exampleFormControlInput1" placeholder="Write a Message...">
+                                <input type="text" class="chatInput form-control-lg w-100 rounded-0 border border-0" id="message" placeholder="Write a Message...">
                             </div>
                             <div class="col-2">
-                                <button type="submit" class="btn btn-lg">Send
+                                <button type="submit" class="btn btn-lg" id="send">Send
                                     <i class="fa-solid fa-message"></i>
                                 </button>
                             </div>

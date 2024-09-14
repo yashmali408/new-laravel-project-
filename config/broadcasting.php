@@ -29,6 +29,10 @@ return [
     */
 
     'connections' => [
+        'redis' => [
+            'driver' => 'redis',
+            'connection' => 'default',
+        ],
 
         'reverb' => [
             'driver' => 'reverb',
@@ -76,6 +80,7 @@ return [
         'null' => [
             'driver' => 'null',
         ],
+
 
     ],
 
